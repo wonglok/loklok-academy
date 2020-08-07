@@ -1,0 +1,226 @@
+<template>
+  <O3D v-if="ready">
+    <O3D :sx="0.02" :sy="0.02" :sz="0.02" :py="63.03 * 0.0333">
+      <IsoVisual :px="0" :pz="0" :py="84.38" :name="'_dill8l26f'" :placer="true"></IsoVisual>
+
+      <O3D :px="-36.72 * 70" :pz="-32.97 * 70" >
+        <!--beach-->
+        <IsoVisual :px="35.78 * 70" :rx="pi * 0.5" :pz="-7.17 * 70" :py="0" :name="'Resque_2'"></IsoVisual>
+      </O3D>
+
+      <O3D :py="4.26">
+        <!--City-->
+        <IsoVisual :px="(-6 / 2 + 0) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_10'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 1) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_10_1'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 2) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_10_2'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 3) * 75 * 15" :pz="0 * 70" :py="0" :ry="pi * 0.5" :name="'Cafe'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 4) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_10_2_4'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 5) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_10_3'" ></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 6) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_10_2_4'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 7) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_10_3'"></IsoVisual>
+      </O3D>
+
+      <O3D :py="4.26" :pz="60.77 * 15.00">
+        <!--City-->
+        <IsoVisual :px="(-6 / 2 + 0) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_1'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 1) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_1'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 2) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_1'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 3) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_1'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 4) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_1'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 5) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_1'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 6) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_1'"></IsoVisual>
+        <IsoVisual :px="(-6 / 2 + 7) * 75 * 15" :pz="0 * 70" :py="0" :name="'Block_1'"></IsoVisual>
+      </O3D>
+
+      <O3D :px="-80.16 * 70" :pz="86.69 * 70">
+        <!--Mountains-->
+        <IsoVisual :px="-1.77 * 70" :pz="0 * 70" :py="37.87 * 20" :name="'Landscape_1'"></IsoVisual>
+        <IsoVisual :px="21.0 * 70" :pz="9.28 * 70" :py="37.87 * 20" :name="'Landscape_1'"></IsoVisual>
+        <!--<IsoVisual :px="-13.66 * 70" :pz="12.33 * 70" :py="-8.54 * 40" :name="'Mount'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Tree_1_6'"></IsoVisual>-->
+      </O3D>
+
+      <O3D :py="4.26" :pz="30 * 150.00">
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_1'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_10'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_10_1'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_10_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_10_2_4'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_10_3'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_1_1'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_1_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_1_3'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_2_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_3'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_3_1'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_4'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_5'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_6'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_6_1'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_6_4'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_7'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_7_1'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_7_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_8'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_8_1'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_8_1_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_8_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_8_Gas_Station'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_9'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_9_1'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_9_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_9_2_3'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Block_9_3'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Cafe'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'House_10'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'House_19'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'House_1_15'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'House_21'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'House_2_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'House_3'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'House_3_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'House_4_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Muff_1_4'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'PArking'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Round_Building'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Shop_3'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Stadium'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Tower'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Tree_1_6'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Tree_4'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Gull_6'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Helicopter'"></IsoVisual>-->
+
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Mount'"></IsoVisual>-->
+        <!--<IsoVisual :px="-100.00 * 70" :pz="0 * 70" :py="0" :name="'_dill8l26f'"></IsoVisual>-->
+
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Palm_0'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Containers_Ship_1'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Ship_2'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Streetlight_0'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'traffic_light_0'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'CAR_03_1'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :rx="pi * -0.5" :name="'Car_04'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :rx="pi * -0.5" :name="'Car_04_3'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'Car_04_4'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :rx="pi" :py="0" :name="'Car_08_7'"></IsoVisual>-->
+
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'_k1k4u9bf6'"></IsoVisual>-->
+        <!--<IsoVisual :px="0 * 70" :pz="0 * 70" :py="0" :name="'_vxnsflsdd'"></IsoVisual>-->
+      </O3D>
+    </O3D>
+
+    <IsoCityLights></IsoCityLights>
+    <IsoCityControl @controls="setupControls"></IsoCityControl>
+
+
+    <O3D :position="{ x: 7.45, y: 11.64 / 10, z: -54.92 }">
+      <O3D :sx="0.1" :sy="0.1" :sz="0.1" :ry="pi * 100 / 100">
+        <GameNPC :px="1.91" :py="0.66" :pz="-5.87" :ry="-13.23 / 100 * pi" :char="'suzie'" :dance="'Male Laying Pose (4)'"></GameNPC>
+        <IsoVisual :sx="0.5" :sy="24.24 / 100" :sz="0.5" :pz="0.0" :py="-5.46 * 0.5" :name="'Maras_0'"></IsoVisual>
+        <O3D :pz="8.47" :px="14.51" :sx="0.5" :sy="1.5" :sz="0.5">
+          <IsoVisual :px="-8.52" :pz="-0.27 * 10" :py="14.47" :name="'Umbrella'"></IsoVisual>
+        </O3D>
+        <IsoVisual :sx="0.1" :sy="0.1" :sz="0.1" :px="2.40 * 70" :pz="0 * 70" :py="0" :name="'Palm_0'"></IsoVisual>
+      </O3D>
+    </O3D>
+
+    <O3D :scale="{ x: 0.01, y: 0.01, z: 0.01 }" :position="{ x: -31.15, y: 0.78 - -31.85 / 100, z: -49.92 }">
+      <IsoVisual :name="'Palm_0'"></IsoVisual>
+    </O3D>
+    <O3D :scale="{ x: 0.01, y: 0.01, z: 0.01 }" :position="{ x: 14.06, y: 0.78 - -31.85 / 100, z: -46.08 }">
+      <IsoVisual :name="'Palm_0'"></IsoVisual>
+    </O3D>
+    <O3D :scale="{ x: 0.01, y: 0.01, z: 0.01 }" :position="{ x: 18.42, y: 0.78 - -31.85 / 100, z: -47.09 }">
+      <IsoVisual :name="'Palm_0'"></IsoVisual>
+    </O3D>
+    <O3D :scale="{ x: 1 / 100, y: 1 / 100, z: 1 / 100 }" :position="{ x: 7.14, y: 0.78 - -31.85 / 100, z: -45.10 }">
+      <IsoVisual :name="'Palm_0'"></IsoVisual>
+    </O3D>
+    <O3D :scale="{ x: 1 / 100, y: 1 / 100, z: 1 / 100 }" :position="{ x: 10.19, y: 0.78 - -31.85 / 100, z: -47.36 }">
+      <IsoVisual :name="'Palm_0'"></IsoVisual>
+    </O3D>
+
+    <O3D>
+      <!--Round Building-->
+      <O3D :scale="{ x: 1 / 100, y: 1 / 100, z: 1 / 100 }" :position="{ x: 54.01, y: 0.78 - -31.85 / 100, z: 56.80 }">
+        <IsoVisual :name="'Round_Building'"></IsoVisual>
+      </O3D>
+
+      <O3D :scale="{ x: 1 / 100, y: 1 / 100, z: 1 / 100 }" :ry="pi * 0.5" :position="{ x: 45.54, y: 0.78 - -31.85 / 100, z: 56.33 }">
+        <IsoVisual :name="'Block_8'"></IsoVisual>
+      </O3D>
+
+      <O3D :scale="{ x: 1 / 100, y: 1 / 100, z: 1 / 100 }" :position="{ x: 73.37, y: 0.78 - -31.85 / 100, z: 65.83 }">
+        <IsoVisual :name="'Block_7'"></IsoVisual>
+      </O3D>
+
+      <O3D :scale="{ x: 1 / 100, y: 1 / 100, z: 1 / 100 }" :position="{ x: 63.64, y: 66.80 / 50 - -31.85 / 100, z: 57.20 }">
+        <IsoVisual :name="'Block_7_1'"></IsoVisual>
+      </O3D>
+
+      <O3D :scale="{ x: 1 / 100, y: 1 / 100, z: 1 / 100 }" :position="{ x: 36.64, y: 0.81 - -31.85 / 100, z: 55.78 }">
+        <IsoVisual :name="'House_10'"></IsoVisual>
+      </O3D>
+
+    </O3D>
+
+    <!--<O3D :scale="{ x: 1 / 100, y: 1 / 100, z: 1 / 100 }" :position="{ x: 25.27, y: 0.78 - -31.85 / 100, z: -46.19 }">-->
+    <!--  <O3D :scale="{ x: 10, y: 10, z: 10 }" :ry="pi * 100 / 100">-->
+    <!--    <GameNPC :char="'joe'" :dance="'Male Laying Pose (4)'"></GameNPC>-->
+    <!--  </O3D>-->
+    <!--</O3D>-->
+
+    <!--<O3D :scale="{ x: 1 / 100, y: 1 / 100, z: 1 / 100 }" :position="{ x: 22.70, y: 0.78 - -31.85 / 100, z: -46.21 }">-->
+    <!--  <O3D :scale="{ x: 10, y: 10, z: 10 }" :ry="pi * 100 / 100">-->
+    <!--    <GameNPC :char="'peter'" :dance="'Male Laying Pose (4)'"></GameNPC>-->
+    <!--  </O3D>-->
+    <!--</O3D>-->
+
+
+    <!--<O3D :scale="{ x: 1 / 100, y: 1 / 100, z: 1 / 100 }" :position="{ x: 26.97, y: 0.78 - -31.85 / 100, z: -45.95 }">-->
+    <!--  <O3D :scale="{ x: 10, y: 10, z: 10 }" :ry="pi * 100 / 100">-->
+    <!--    <GameNPC :char="'alex'" :dance="'Male Laying Pose (4)'"></GameNPC>-->
+    <!--  </O3D>-->
+    <!--</O3D>-->
+
+
+
+    <!--<IsoVisual :px="7.13" :py="0.78" :pz="-5.74 * 70" :name="'Car_04'"></IsoVisual>-->
+
+    <IsoPlacer :opacity="0.3"></IsoPlacer>
+    <LoadingGUI class="absolute top-0 left-0"></LoadingGUI>
+
+  </O3D>
+</template>
+
+<script>
+let { Scene } = THREE
+export default {
+  data () {
+    return {
+      rayplay: false,
+      ready: false,
+      camera: false
+    }
+  },
+  mounted () {
+    this.scene = new Scene()
+    this.camera = new OCamera({ element: this.renderRootElement, onResize: this.onResize })
+    this.rayplay = new RayPlay({ onResize: this.onResize, onClean: this.onClean, mounter: this.ctx.touchdiv, camera: this.ctx.camera, onLoop: this.onLoop })
+    this.scene.add(this.o3d)
+    this.ready = true
+  },
+  methods: {
+    setupControls (controls) {
+      this.ctx.camera.position.set(1000, 1000, -1000);
+    }
+  }
+}
+
+</script>
+
+<style>
+/*  */
+</style>
