@@ -12,7 +12,7 @@
               >
                 <i class="fas fa-award"></i>
               </div>
-              <h6 class="text-xl font-semibold">All Tutorials are Free</h6>
+              <h6 class="text-xl font-semibold">All Coding Tutorials are Free</h6>
               <p class="mt-2 mb-4 text-gray-600">
                 I love learning tutorials from the internet for free. I would also like to give back to our community!
               </p>

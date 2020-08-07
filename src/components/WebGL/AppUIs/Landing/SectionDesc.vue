@@ -21,13 +21,13 @@
     </div>
     <div class="container mx-auto px-4">
       <div class="items-center flex flex-wrap">
-        <div class="w-full md:w-4/12 ml-auto mr-auto px-4 progress-canvas">
+        <div class="w-full md:w-4/12 ml-auto mr-auto px-4">
           <!-- <img
             alt="..."
             class="max-w-full rounded-lg shadow-lg"
             src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80"
           /> -->
-          <GLArtCanvas class="h-full w-full progress-canvas-area" :bgcolor="'#000000'" :rounded="'8px 8px 8px 8px'">
+          <GLArtCanvas class="h-full w-full progress-canvas-area rounded-lg" :rounded="'8px 8px 8px 8px'">
             <!-- <Bloomer :settings="{
               exposure: 1.0,
               bloomStrength: 1.7,
@@ -108,13 +108,17 @@ import { O3DVue } from '../../Core/O3DVue'
 export default {
   mixins: [
     O3DVue
-  ],
-
+  ]
 }
 </script>
 
 <style>
 .progress-canvas-area{
   height: 500px;
+  background-image: url(./img/skyspace.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat no-repeat;
+  background-color: #142f79;
 }
 </style>

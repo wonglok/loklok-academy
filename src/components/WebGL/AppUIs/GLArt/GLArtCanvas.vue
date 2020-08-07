@@ -46,7 +46,7 @@ import { getScreen } from '../../Core/O3DG2'
 export default {
   props: {
     bgcolor: {
-      default: '#000000'
+      default: false
     },
     rounded: {
       default: '8px 8px 0px 0px'
@@ -70,7 +70,9 @@ export default {
       this.onResize(() => {
         this.screen = getScreen({ camera: this.camera, depth: this.camera.position.z })
       })
-      this.scene.background = new Color(this.bgcolor)
+      if (this.bgcolor) {
+        this.scene.background = new Color(this.bgcolor)
+      }
 
       // this.controls = new OrbitControls(this.camera, this.element)
       // this.onLoop(() => {
