@@ -1,5 +1,7 @@
 <template>
-  <O3D><slot></slot></O3D>
+  <O3D>
+    <O3D ref="head" :py="35"><slot name="head"></slot></O3D>
+  </O3D>
 </template>
 
 <script>
@@ -44,7 +46,7 @@ export default {
         chroma = new ShaderCubeChrome({
           renderer: this.ctx.renderer,
           onLoop: this.onLoop,
-          res: 32,
+          res: 50,
           color: new Color('#ffffff')
         })
       }
@@ -54,6 +56,7 @@ export default {
         this.$emit('ready')
         this.o3d.add(this.npc.out.o3d)
         this.renderRoot.$emit('lookAtGuy', this.npc.skeleton.mixamorigHead)
+        this.npc.skeleton.mixamorigHead.add(this.$refs.head.o3d)
         this.$emit('skeleton', this.npc.skeleton)
 
         if (this.camLock) {
@@ -68,7 +71,8 @@ export default {
             target: this.npc.skeleton.mixamorigHead,
             onLoop: this.onLoop,
             camera: this.ctx.camera,
-            element: this.ctx.renderer.domElement
+            element: this.ctx.renderer.domElement,
+            onClean: this.onClean
           })
         }
       })

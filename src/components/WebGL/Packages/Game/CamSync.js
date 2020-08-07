@@ -2,12 +2,17 @@ import { Object3D, Vector3 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 export class CamSync {
-  constructor ({ target, onLoop, camera, element }) {
+  constructor ({ target, onLoop, onClean, camera, element }) {
     this.onLoop = onLoop
     this.camera = camera
     this.element = element
     this.target = target
 
+    this.onClean = onClean
+    this.canRun = true
+    this.onClean(() => {
+      this.canRun = false
+    })
     this.run({ target })
   }
   async run ({ target }) {
@@ -22,8 +27,15 @@ export class CamSync {
     lookTarget.position.y = -13
     lookTarget.position.z = 23
     this.controls = new OrbitControls(this.camera, this.element)
+    this.controls.enableDamping = true
+    this.onClean(() => {
+      this.controls.dispose()
+    })
 
     this.onLoop(() => {
+      if (!this.canRun) {
+        return
+      }
       this.controls.update()
       lookTarget.updateMatrix()
       lookTarget.updateMatrixWorld()

@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import { router } from './router.js'
 import './assets/inter/InterWeb/inter.css'
 import './assets/css/tailwind.postcss'
+import './assets/@fortawesome/fontawesome-free/css/all.css'
 
 Vue.use(VueRouter)
 

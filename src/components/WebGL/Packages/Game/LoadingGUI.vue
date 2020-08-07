@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showLoading" class="absolute z-50 top-0 left-0 h-full w-full flex justify-center items-center" :class="{ 'bg-transp-black': true }">
+  <div v-if="showLoading" class="absolute top-0 left-0 h-full w-full flex justify-center items-center" :class="{ 'bg-transp-black': true }">
     <div class="px-4 py-2 rounded-full bg-white text-black text-xs"> {{loadingPercentage.toFixed(2)}}% Loading...</div>
   </div>
 </template>

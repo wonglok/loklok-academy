@@ -22,7 +22,7 @@ export class CamLock {
 
       this.camera.position.x = TempVec3.x
       this.camera.position.y = TempVec3.y
-      this.camera.position.z = TempVec3.z + 15
+      this.camera.position.z = TempVec3.z + 17
       this.camera.lookAt(TempVec3Lerp)
     })
   }
