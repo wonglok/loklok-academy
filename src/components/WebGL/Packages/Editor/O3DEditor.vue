@@ -33,10 +33,14 @@ import { OCamera } from '../../Core/OCamera'
 export default {
   props: {
     globals: {
-      default: {}
+      default () {
+        return {}
+      }
     },
     NS: {
-      default: 'O3DG2-EDITOR-CODE-CITY-DANC'
+      default () {
+        return  'O3DG2-EDITOR-CODE-TXT-' + require('raw-loader!./defaultcode-basic.txt').default.length + require('raw-loader!./defaultcode-basic.txt').default.slice(0, 300)
+      }
     }
   },
   components: {
@@ -96,7 +100,7 @@ export default {
     })
   },
   mounted () {
-    let DEFAULT_CODE = require('raw-loader!./defaultcode-beach.txt').default
+    let DEFAULT_CODE = require('raw-loader!./defaultcode-basic.txt').default
     let lsVue = localStorage.getItem(this.NS)
     if (!lsVue) {
       localStorage.setItem(this.NS, DEFAULT_CODE)

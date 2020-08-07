@@ -4,6 +4,46 @@ import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js'
 import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer.js'
 
 import 'requestidlecallback'
+export function anyPartInViewPort (el) {
+  var top = el.offsetTop;
+  var left = el.offsetLeft;
+  var width = el.offsetWidth;
+  var height = el.offsetHeight;
+
+  while(el.offsetParent) {
+    el = el.offsetParent;
+    top += el.offsetTop;
+    left += el.offsetLeft;
+  }
+
+  return (
+    top < (window.pageYOffset + window.innerHeight) &&
+    left < (window.pageXOffset + window.innerWidth) &&
+    (top + height) > window.pageYOffset &&
+    (left + width) > window.pageXOffset
+  );
+}
+
+export function allInViewPort(el) {
+  var top = el.offsetTop;
+  var left = el.offsetLeft;
+  var width = el.offsetWidth;
+  var height = el.offsetHeight;
+
+  while(el.offsetParent) {
+    el = el.offsetParent;
+    top += el.offsetTop;
+    left += el.offsetLeft;
+  }
+
+  return (
+    top >= window.pageYOffset &&
+    left >= window.pageXOffset &&
+    (top + height) <= (window.pageYOffset + window.innerHeight) &&
+    (left + width) <= (window.pageXOffset + window.innerWidth)
+  );
+}
+
 export const RenderRoot = {
   name: 'RenderRoot',
   mixins: [O3DG2],
@@ -12,8 +52,9 @@ export const RenderRoot = {
   },
   data () {
     return {
+      needsToCheckViewPort: true,
       preserveDrawingBuffer: false,
-      canRun: true,
+      canRun: false,
       touchdiv: false,
       use2DLabel: false,
       use3DLabel: false,
@@ -30,11 +71,23 @@ export const RenderRoot = {
       lazyTasks: []
     }
   },
+  // watch: {
+  //   canRun () {
+  //     console.log(this.canRun, this.renderer.domElement.getBoundingClientRect().top)
+  //   }
+  // },
   methods: {
     handleLoop () {
       let rAFID = 0
       let runTasks = async () => {
         rAFID = window.requestAnimationFrame(runTasks)
+
+        if (this.needsToCheckViewPort) {
+          this.canRun = anyPartInViewPort(this.$el)
+          if (this.canRun) {
+            this.needsToCheckViewPort = false
+          }
+        }
         if (!this.canRun) {
           return
         }
@@ -83,7 +136,7 @@ export const RenderRoot = {
         cancelIdleCallback(reqID)
         reqID = requestIdleCallback(() => {
           runResize()
-        }, { timeout: 1000 })
+        }, { timeout: 500 })
       }
       window.addEventListener('resize', resize, false)
       this.onClean(() => {
@@ -92,6 +145,7 @@ export const RenderRoot = {
     },
     handleRootRef () {
       this.rootMounterElement = this.$refs['canvas-root'] || this.$el
+      this.scrollEl = window
     },
     setupLabel3D () {
       this.use3DLabel = true
@@ -149,6 +203,14 @@ export const RenderRoot = {
         this.camera = v
       })
       this.$emit('renderer', this.renderer)
+    },
+    inViewSetup () {
+      window.addEventListener('scroll', () => {
+        this.needsToCheckViewPort = true
+      })
+      window.addEventListener('resize', () => {
+        this.needsToCheckViewPort = true
+      })
     }
   },
   beforeDestroy() {
@@ -169,5 +231,6 @@ export const RenderRoot = {
     // this.setupLabel2D()
     // this.setupLabel3D()
     this.setupGL()
+    this.inViewSetup()
   }
 }

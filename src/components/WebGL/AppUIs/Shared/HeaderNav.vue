@@ -11,7 +11,8 @@
 
         <nav class="hidden md:flex md:ml-auto flex-wrap items-center text-base justify-center">
           <span v-for="(link, idx) in main" :key="idx">
-            <router-link class="mr-5 hover:text-gray-900" :to="`${link.path}`" :class="{ 'mr-5': idx !== main.length - 1 }">{{ link.name }}</router-link>
+            <router-link v-if="link.type === 'router'" class="mr-5 hover:text-gray-900" :to="`${link.path}`" :class="{ 'mr-5': idx !== main.length - 1 }">{{ link.name }}</router-link>
+            <a v-if="link.type === 'external'" :href="link.path" target="_blank">{{ link.name }}</a>
           </span>
         </nav>
 
@@ -51,9 +52,15 @@ export default {
     return {
       showMenu: false,
       main: [
+        // {
+        //   type: 'router',
+        //   path: '/course',
+        //   name: 'Course Catalogue'
+        // },
         {
-          path: '/course',
-          name: 'Course Catalogue'
+          type: 'external',
+          path: 'https://www.linkedin.com/in/wonglok831/',
+          name: 'Open for Commission'
         }
       ],
       course: [

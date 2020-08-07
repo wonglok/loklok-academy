@@ -21,8 +21,14 @@ export default {
   methods: {
     async run () {
       this.scene = new Scene()
-      this.scene.background = new Color('#bababa')
+      // this.scene.background = new Color('#bababa')
+      this.scene.background = new Color('#000000')
       this.scene.add(this.o3d)
+
+      this.onEnsure(() => this.ctx.renderer)
+        .then(() => {
+          this.$emit('ready', this)
+        })
     }
   },
   mounted () {

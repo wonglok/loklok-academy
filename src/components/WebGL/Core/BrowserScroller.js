@@ -1,5 +1,5 @@
 export class BrowserScroller {
-  constructor ({ onLoop, scroller }) {
+  constructor ({ onLoop, scroller, init = 0 }) {
     class ValueDamper {
       constructor (v = 0) {
         // this.minY = limit.ny,
@@ -26,8 +26,8 @@ export class BrowserScroller {
       }
     }
 
-    let SmoothY = new ValueDamper(0)
-    SmoothY.value = 0
+    let SmoothY = new ValueDamper(init)
+    SmoothY.value = init
 
     scroller.addEventListener('scroll', () => {
       let value = (scroller.scrollTop) / window.innerHeight

@@ -53,7 +53,7 @@ export default {
       this.npc = new CharNPC({ matcap: this.matcap, opacity: this.opacity, char: this.char, onLoop: this.onLoop, readyMoveName: this.move, chroma })
 
       this.npc.out.done.then(async () => {
-        this.$emit('ready')
+        this.$emit('ready', this)
         this.o3d.add(this.npc.out.o3d)
         this.renderRoot.$emit('lookAtGuy', this.npc.skeleton.mixamorigHead)
         this.npc.skeleton.mixamorigHead.add(this.$refs.head.o3d)

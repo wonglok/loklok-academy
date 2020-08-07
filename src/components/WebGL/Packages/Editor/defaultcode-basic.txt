@@ -1,0 +1,52 @@
+<template>
+  <O3D v-if="ready">
+    <SwatWalk></SwatWalk>
+    <O3D>
+      <O3D :px="0" :pz="0" :py="1000">
+        <DirectionalLight :color="0xffffff" :floorColor="0xffffff" :helper="isDev && isOff" :intensity="0.75"></DirectionalLight>
+      </O3D>
+
+      <O3D :px="0" :pz="0" :py="0">
+        <AmbinetLight :color="0xffffff" :helper="isDev && isOff" :intensity="0.5"></AmbinetLight>
+      </O3D>
+    </O3D>
+
+    <GameNPC :px="10" :pz="-21.64" :char="'glassman'" :move="'Ymca Dance'"></GameNPC>
+    <GameNPC ref="char" :pz="-20" :char="'glassman'" :move="'Ymca Dance'"></GameNPC>
+    <GameNPC :px="-10" :pz="-20" :char="'glassman'" :move="'Ymca Dance'"></GameNPC>
+  </O3D>
+</template>
+
+<script>
+let { Vector3, Scene } = THREE
+export default {
+  data () {
+    return {
+      mv: 0,
+      ready: false
+    }
+  },
+  created () {
+  },
+  async mounted () {
+    this.scene = new Scene()
+    this.camera = new PCamera({ element: this.renderRootElement, onResize: this.onResize })
+    this.rayplay = new RayPlay({ onResize: this.onResize, onClean: this.onClean, mounter: this.ctx.touchdiv, camera: this.ctx.camera, onLoop: this.onLoop })
+    this.scene.add(this.o3d)
+
+    this.onLoop(() => {
+      let tt = window.performance.now() * 0.001
+      this.mv = Math.sin(tt * 1)
+    })
+
+    this.camera.position.y = 13
+    this.camera.position.z = 10
+
+    this.ready = true
+  }
+}
+</script>
+
+<style>
+/*  */
+</style>
