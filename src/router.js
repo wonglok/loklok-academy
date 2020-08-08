@@ -1,5 +1,25 @@
 import VueRouter from 'vue-router'
+var path = require('path')
+function importAll (r) {
+  let array = []
+  r.keys().forEach(key => {
+    let filename = path.basename(key).replace('.vue', '')
+    let config = {
+      name: filename,
+      path: filename,
+      component: () => new Promise((resolve) => {
+        r(key).then((mod) => {
+          resolve(mod.default)
+        })
+      })
+    }
+    array.push(config)
+  })
+  return array.filter(e => e.path.indexOf('LessonBar') === -1)
+}
+let jsbasics = importAll(require.context('./components/WebGL/AppUIs/CourseDetailForJSBasics', true, /\.vue$/, 'lazy'), 'lazy')
 
+console.log(jsbasics)
 export const routes = [
   {
     path: '/',
@@ -7,13 +27,23 @@ export const routes = [
   },
   {
     path: '/lessons/js-basics',
-    component: () => import('./components/WebGL/AppUIs/Shared/CourseLayout.vue'),
+    component: () => import('./components/WebGL/AppUIs/Shared/LessonLayout.vue'),
     children: [
       {
-        path: 'varaibles',
-        name: 'Variables',
-        component: () => import('./components/WebGL/AppUIs/CourseDetailForJSBasics/L01Variables.vue')
-      }
+        path: '',
+        redirect: `./${jsbasics[0].path}`,
+      },
+      ...jsbasics
+      // {
+      //   path: 'varaibles',
+      //   name: 'Variables',
+      //   component: () => import('./components/WebGL/AppUIs/CourseDetailForJSBasics/L01Variables.vue')
+      // },
+      // {
+      //   path: 'types',
+      //   name: 'Types',
+      //   component: () => import('./components/WebGL/AppUIs/CourseDetailForJSBasics/L02Types.vue')
+      // }
     ]
   },
   {
