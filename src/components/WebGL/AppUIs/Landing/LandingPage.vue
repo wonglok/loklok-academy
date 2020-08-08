@@ -29,7 +29,7 @@
       </LightedCanvas>
     </div>
 
-    <SectionIntro></SectionIntro>
+    <SectionIntro @play="move = $event"></SectionIntro>
     <SectionDesc></SectionDesc>
     <SectionCatalogueCTA></SectionCatalogueCTA>
 
