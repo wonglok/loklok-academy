@@ -1,7 +1,7 @@
 <template>
   <div class="full">
     <LessonBarLayout>
-      <LessonBarJSBasics slot="bar"></LessonBarJSBasics>
+      <LessonBar slot="bar"></LessonBar>
       <div slot="box" class="h-full">
         <JSEditor :code="code" :NS="code" :key="code" class="h-full w-full"></JSEditor>
       </div>

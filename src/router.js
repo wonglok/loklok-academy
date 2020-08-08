@@ -1,121 +1,81 @@
 import VueRouter from 'vue-router'
+
+export let courses = [
+]
+
 var path = require('path')
-function importAll (r) {
-  let array = []
-  r.keys().forEach(key => {
+function loadCourse (courseName, prefix, underDevelopment, rCtx) {
+  let lessonsRaw = []
+  rCtx.keys().forEach(key => {
     let filename = path.basename(key).replace('.vue', '')
     let config = {
       name: filename,
-      path: filename,
+      meta: {
+        courseName,
+        prefix,
+      },
+      path: `${prefix}/${filename}`,
       component: () => new Promise((resolve) => {
-        r(key).then((mod) => {
+        rCtx(key).then((mod) => {
           resolve(mod.default)
         })
       })
     }
-    array.push(config)
+    lessonsRaw.push(config)
   })
-  return array.filter(e => e.path.indexOf('LessonBar') === -1)
+  let lessons = lessonsRaw.filter(e => e.path.indexOf('LessonBar') === -1)
+  let oneCourse = {
+    meta: {
+      courseName,
+      prefix,
+      underDevelopment
+    },
+    path: prefix,
+    name: courseName,
+    component: () => import('./components/WebGL/AppUIs/Shared/LessonLayout.vue'),
+    children: [
+      {
+        path: prefix,
+        redirect: `${lessons[0].path}`,
+      },
+      ...lessons
+    ]
+  }
+  courses.push(oneCourse)
+  return oneCourse
 }
-let jsbasics = importAll(require.context('./components/WebGL/AppUIs/CourseForJSBasics', true, /\.vue$/, 'lazy'), 'lazy')
 
-console.log(jsbasics)
+loadCourse('JavaScript Basics', '/lessons/js-basics', false, require.context('./components/WebGL/AppUIs/CourseForJSBasics', true, /\.vue$/, 'lazy'), 'lazy')
+loadCourse('JavaScript ES6', '/lessons/es6-basics', true, require.context('./components/WebGL/AppUIs/CourseForES6', true, /\.vue$/, 'lazy'), 'lazy')
+
+export const getLessons = () => {
+  let oneCourse = courses.find(c => c.meta.prefix === router.currentRoute.meta.prefix)
+  let lessons = []
+  if (oneCourse) {
+    lessons = oneCourse.children.filter(e => !e.redirect)
+      .map(e => {
+        let newItem = JSON.parse(JSON.stringify(e))
+        newItem.name = newItem.name.slice(3, newItem.name.length)
+        return newItem
+      })
+  }
+  return lessons
+}
+
 export const routes = [
   {
     path: '/',
     component: () => import('./components/WebGL/AppUIs/Landing/LandingPage.vue')
   },
+  ...courses,
   {
-    path: '/lessons/js-basics',
-    component: () => import('./components/WebGL/AppUIs/Shared/LessonLayout.vue'),
-    children: [
-      {
-        path: '',
-        redirect: `./${jsbasics[0].path}`,
-      },
-      ...jsbasics
-      // {
-      //   path: 'varaibles',
-      //   name: 'Variables',
-      //   component: () => import('./components/WebGL/AppUIs/CourseDetailForJSBasics/L01Variables.vue')
-      // },
-      // {
-      //   path: 'types',
-      //   name: 'Types',
-      //   component: () => import('./components/WebGL/AppUIs/CourseDetailForJSBasics/L02Types.vue')
-      // }
-    ]
-  },
-  {
-    path: '/course',
-    component: () => import('./components/WebGL/AppUIs/Shared/CourseLayout.vue'),
-    children: [
-      {
-        path: '',
-        name: 'Course Catalogue',
-        component: () => import('./components/WebGL/AppUIs/CourseIntro/CourseCatalogue.vue')
-      },
-      {
-        path: 'javascript-basics',
-        name: 'JavaScript Basics',
-        to: '/lessons/js-basics',
-        inProgress: false,
-        component: () => import('./components/WebGL/AppUIs/CourseIntro/JSBasics.vue')
-      },
-      {
-        path: 'es6-basics',
-        name: 'ES6 Basics',
-        inProgress: true,
-
-        component: () => import('./components/WebGL/AppUIs/CourseIntro/JSBasics.vue')
-      },
-      {
-        path: 'dom-basics',
-        name: 'Document Object Model (DOM)',
-        inProgress: true,
-
-        component: () => import('./components/WebGL/AppUIs/CourseIntro/JSBasics.vue')
-      },
-      {
-        path: 'canavs-basics',
-        name: 'Canvas 2D Basics',
-        inProgress: true,
-
-        component: () => import('./components/WebGL/AppUIs/CourseIntro/JSBasics.vue')
-      },
-      {
-        path: 'webgl-basics',
-        name: 'WebGL Concept Basics',
-        inProgress: true,
-
-        component: () => import('./components/WebGL/AppUIs/CourseIntro/JSBasics.vue')
-      },
-      {
-        path: 'threejs-basics',
-        name: 'ThreeJS Basics',
-        inProgress: true,
-
-        component: () => import('./components/WebGL/AppUIs/CourseIntro/JSBasics.vue')
-      },
-      {
-        path: 'threejs-intermediate',
-        name: 'ThreeJS Intermediate',
-        inProgress: true,
-
-        component: () => import('./components/WebGL/AppUIs/CourseIntro/JSBasics.vue')
-      },
-      {
-        path: 'threejs-advanced',
-        name: 'ThreeJS Advanced',
-        inProgress: true,
-
-        component: () => import('./components/WebGL/AppUIs/CourseIntro/JSBasics.vue')
-      }
-    ]
+    path: '/course-catalogue',
+    name: 'Course Catalogue',
+    component: () => import('./components/WebGL/AppUIs/CourseCatalogue/CourseCatalogue.vue')
   },
   {
     path: '*',
-    redirect: '/'
+    component: () => import('./components/WebGL/AppUIs/Shared/E404.vue')
   }
 ]
 
@@ -123,3 +83,12 @@ export const router = new VueRouter({
   mode: 'history',
   routes
 })
+
+export const getDynamicLinks = () => {
+  let currentArr = routes.find(e => router.currentRoute.path.indexOf(e.path) !== -1)
+  let links = []
+  if (currentArr) {
+    links = currentArr.children
+  }
+  return links
+}

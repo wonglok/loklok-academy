@@ -78,8 +78,8 @@
             </div>
             <ul class="pl-6 list-disc">
               <li class="" v-for="(cr, cri) in courses" :key="cri">
-                <span v-if="cr.inProgress">{{ cr.name }}  (In Progress)</span>
-                <router-link class="underline" :to="cr.to" v-if="!cr.inProgress">{{ cr.name }}</router-link>
+                <span v-if="cr.underDevelopment">{{ cr.name }}  (In Progress)</span>
+                <router-link class="underline" :to="`${cr.path}`" v-if="!cr.underDevelopment">{{ cr.name }}</router-link>
               </li>
             </ul>
           </div>
@@ -134,7 +134,7 @@
 </template>
 
 <script>
-import { routes } from '../../../../router'
+import { courses } from '../../../../router'
 
 export default {
   mixins: [
@@ -142,7 +142,7 @@ export default {
   ],
   data () {
     return {
-      courses: routes.find(r => r.path === '/course').children.filter(e => e.name !== 'Course Catalogue')
+      courses
     }
   }
 }

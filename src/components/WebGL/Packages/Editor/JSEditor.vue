@@ -66,7 +66,7 @@ export default {
   data () {
     return {
       runCanvas: true,
-      useEditor: window.innerWidth > 500,
+      useEditor: true,
       version: `v0.0.1`,
       needsRunSave: false,
       styleHTML: '',
@@ -179,6 +179,7 @@ export default {
 
 <style lang="postcss">
 .o3d-editor{
+  height: 100%;
 }
 .half-height{
   height: 50%;

@@ -1,7 +1,7 @@
 <template>
   <div class="full">
     <LessonBarLayout>
-      <LessonBarJSBasics slot="bar"></LessonBarJSBasics>
+      <LessonBar slot="bar"></LessonBar>
       <div slot="box" class="h-full">
         <JSEditor :code="code" :NS="code" :key="code" class="h-full w-full"></JSEditor>
       </div>
@@ -18,16 +18,25 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: `// refernece a number
-var myNumber = 12345;
-// refernece a string (words)
-var myName = 'Lok Lok';
-// refernece an object
-var myObject = {};
+      code: `function addAge(a, b){
+    var result;
+    result = a + b;
+    return result;
+}
 
-console.log('myNumber is:', typeof myNumber);
-console.log('myName is:', typeof myName);
-console.log('myObject is:', typeof myObject);
+function addName(firstName, secondName){
+    var result;
+
+    result = firstName + ' & ' + secondName;
+
+    return result;
+}
+
+var lokAge = 10, peterAge = 15;
+console.log('variable add', addAge(lokAge, peterAge));
+console.log('inline number add', addAge(20,30));
+console.log('add name', addName('lok', 'siu ming'));
+
 `
     }
   }
