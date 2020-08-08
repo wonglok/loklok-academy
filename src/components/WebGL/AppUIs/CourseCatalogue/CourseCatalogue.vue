@@ -125,18 +125,8 @@
           </div>
           <div class="w-full md:w-1/2 lg:w-3/5 rounded-lg md:mt-0 mt-12">
             <div class="course-catalogue-art rounded-lg ">
-              <GLArtCanvas class="h-full w-full rounded-lg" :rounded="'8px 8px 8px 8px'">
-                <!-- <Bloomer :settings="{
-                  exposure: 1.0,
-                  bloomStrength: 1.7,
-                  bloomThreshold: 20.72 / 100.0,
-                  bloomRadius: 72.99 / 100.0 * 2
-                }"></Bloomer> -->
-
+              <GLArtCanvas v-if="false" class="h-full w-full rounded-lg" :rounded="'8px 8px 8px 8px'">
                 <GLFlower></GLFlower>
-
-                <!-- <EnergyArt :pz="50" :lowres="true"></EnergyArt> -->
-                <!-- <FastFlame :sx="3.6" :lowres="true"></FastFlame> -->
               </GLArtCanvas>
             </div>
           </div>
