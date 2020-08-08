@@ -17,7 +17,7 @@ function importAll (r) {
   })
   return array.filter(e => e.path.indexOf('LessonBar') === -1)
 }
-let jsbasics = importAll(require.context('./components/WebGL/AppUIs/CourseDetailForJSBasics', true, /\.vue$/, 'lazy'), 'lazy')
+let jsbasics = importAll(require.context('./components/WebGL/AppUIs/CourseForJSBasics', true, /\.vue$/, 'lazy'), 'lazy')
 
 console.log(jsbasics)
 export const routes = [

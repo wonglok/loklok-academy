@@ -56,7 +56,9 @@ export default {
         this.$emit('ready', this)
         this.o3d.add(this.npc.out.o3d)
         this.renderRoot.$emit('lookAtGuy', this.npc.skeleton.mixamorigHead)
-        this.npc.skeleton.mixamorigHead.add(this.$refs.head.o3d)
+        if (this.$refs.head) {
+          this.npc.skeleton.mixamorigHead.add(this.$refs.head.o3d)
+        }
         this.$emit('skeleton', this.npc.skeleton)
 
         if (this.camLock) {
