@@ -125,7 +125,7 @@
           </div>
           <div class="w-full md:w-1/2 lg:w-3/5 rounded-lg md:mt-0 mt-12">
             <div class="course-catalogue-art rounded-lg ">
-              <GLArtCanvas v-if="false" class="h-full w-full rounded-lg" :rounded="'8px 8px 8px 8px'">
+              <GLArtCanvas class="h-full w-full rounded-lg" :rounded="'8px 8px 8px 8px'">
                 <GLFlower></GLFlower>
               </GLArtCanvas>
             </div>
