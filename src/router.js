@@ -58,7 +58,8 @@ export const routes = [
       {
         path: 'javascript-basics',
         name: 'JavaScript Basics',
-        inProgress: true,
+        to: '/lessons/js-basics',
+        inProgress: false,
         component: () => import('./components/WebGL/AppUIs/CourseIntro/JSBasics.vue')
       },
       {

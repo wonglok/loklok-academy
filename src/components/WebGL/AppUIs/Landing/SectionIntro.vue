@@ -78,7 +78,8 @@
             </div>
             <ul class="pl-6 list-disc">
               <li class="" v-for="(cr, cri) in courses" :key="cri">
-                {{ cr.name }} <span v-if="cr.inProgress">(In Progress)</span>
+                <span v-if="cr.inProgress">{{ cr.name }}  (In Progress)</span>
+                <router-link class="underline" :to="cr.to" v-if="!cr.inProgress">{{ cr.name }}</router-link>
               </li>
             </ul>
           </div>
