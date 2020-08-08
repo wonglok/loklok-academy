@@ -41,16 +41,20 @@ float pattern (vec2 p) {
 void main (void) {
   vec4 imgColor = texture2D(tex, vUv);
   vec3 outColor = vec3(0.0);
-  vec2 pt = vUv.xy;
-  pt.y = pt.y * (sceneRect.y / sceneRect.x);
-  pt.xy = pt.xy * 3.0;
 
   // if (imgColor.a > 0.0) {
-  outColor.r = 0.1 + 2.0 * pattern(pt.xy + imgColor.r * pt.xy + -0.7 * cos(time));
-  outColor.g = 0.1 + 2.0 * pattern(pt.xy + imgColor.g * pt.xy + 0.0);
-  outColor.b = 0.1 + 2.0 * pattern(pt.xy + imgColor.b * pt.xy + 0.7 * cos(time));
-  outColor.rgb *= imgColor.a;
-  // }
+  if (imgColor.r >= 0.1) {
+    vec2 pt = vUv.xy;
+    pt.y = pt.y * (sceneRect.y / sceneRect.x);
+    pt.xy = pt.xy * 3.0;
+    outColor.r = 0.1 + 2.0 * pattern(pt.xy + imgColor.r * pt.xy + -0.5 * cos(time));
+    outColor.g = 0.1 + 2.0 * pattern(pt.xy + imgColor.g * pt.xy + 0.0);
+    outColor.b = 0.1 + 2.0 * pattern(pt.xy + imgColor.b * pt.xy + 0.5 * cos(time));
+    outColor.rgb *= imgColor.a;
 
-  gl_FragColor = vec4(clamp(outColor.rgb, 0.0, imgColor.a), outColor.r);
+    gl_FragColor = vec4(clamp(outColor.rgb, 0.0, imgColor.a), outColor.r);
+  } else {
+    gl_FragColor = vec4(0.0);
+  }
 }
+

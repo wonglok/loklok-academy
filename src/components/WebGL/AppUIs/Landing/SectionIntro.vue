@@ -38,7 +38,7 @@
           </div>
         </div>
 
-        <div class="lg:pt-6 w-full md:w-4/12 px-4 text-center" @mouseenter="$emit('play', 'Fist Pump (1)')">
+        <div class="lg:pt-6 w-full md:w-4/12 px-4 text-center" @mouseenter="$emit('play', 'Sitting Thumbs Up')">
           <div
             class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
           >

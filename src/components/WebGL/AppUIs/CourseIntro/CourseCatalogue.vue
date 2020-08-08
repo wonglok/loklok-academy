@@ -23,7 +23,7 @@
               <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
                 <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
               </div>
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-orange-500 inline-flex items-center justify-center text-white relative z-10">
                 <i class="fa fa-asterisk"></i>
               </div>
               <div class="flex-grow pl-4">
@@ -37,7 +37,7 @@
               <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
                 <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
               </div>
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10">
+              <div class=" flex-shrink-0 w-10 h-10 rounded-full bg-orange-500 inline-flex items-center justify-center text-white relative z-10">
                 <i class="fa fa-asterisk"></i>
               </div>
               <div class="flex-grow pl-4">
@@ -50,7 +50,7 @@
               <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
                 <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
               </div>
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-500 inline-flex items-center justify-center text-white relative z-10">
                 <i class="fa fa-asterisk"></i>
               </div>
               <div class="flex-grow pl-4">
@@ -76,7 +76,7 @@
               <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
                 <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
               </div>
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-500 inline-flex items-center justify-center text-white relative z-10">
                 <i class="fa fa-asterisk"></i>
               </div>
               <div class="flex-grow pl-4">
@@ -89,7 +89,7 @@
               <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
                 <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
               </div>
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-500 inline-flex items-center justify-center text-white relative z-10">
                 <i class="fa fa-asterisk"></i>
               </div>
               <div class="flex-grow pl-4">
@@ -102,7 +102,7 @@
               <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
                 <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
               </div>
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-500 inline-flex items-center justify-center text-white relative z-10">
                 <i class="fa fa-asterisk"></i>
               </div>
               <div class="flex-grow pl-4">
@@ -112,7 +112,7 @@
             </div>
 
             <div class="flex relative pb-12">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-500 inline-flex items-center justify-center text-white relative z-10">
                 <i class="fa fa-asterisk"></i>
               </div>
               <div class="flex-grow pl-4">
@@ -142,7 +142,7 @@
         </div>
       </div>
     </section>
-
+    <SectionFooter></SectionFooter>
   </div>
 </template>
 
@@ -162,14 +162,16 @@ export default {
 
 <style lang="postcss">
 .course-banner{
-  height: 70vmin;
+  height: 60vh;
 }
 .course-banner-overlay{
   background-color: rgba(0, 0, 0, 0.185);
 }
 
 .course-catalogue-art{
-  height: 500px;
+  position: sticky;
+  top: 30px;
+  height: 550px;
   background-image: url(./img/cherry.jpg);
   background-size: cover;
   background-position: center center;
