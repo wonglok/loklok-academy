@@ -69,7 +69,6 @@
 import { getLessons } from '../../../../router'
 export default {
   data () {
-
     return {
       showMenu: false,
       main: [
