@@ -3,7 +3,7 @@
     <LessonBarLayout>
       <LessonBar slot="bar"></LessonBar>
       <div slot="box" class="h-full">
-        <JSEditor :code="code" :NS="code" :key="code" class="h-full w-full"></JSEditor>
+        <DOMEditor :code="code" :NS="code" :key="code" class="h-full w-full"></DOMEditor>
       </div>
     </LessonBarLayout>
   </div>
@@ -18,20 +18,14 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: `var lok = {
-    name: 'wonglok',
-    age: 23
-};
-
-console.log(lok.name, lok.age);
-lok.age = 26; //update the age.
-
-console.log(lok.name, lok.age, '(new age)');
-`
+      code: require('raw-loader!./detail/animate-dom.txt').default
     }
+  },
+  mounted () {
   }
 }
 </script>
 
 <style>
+
 </style>

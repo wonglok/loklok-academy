@@ -18,39 +18,12 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: `if (true){
-    // run
-    console.log('1');
-}
-if (false){
-	//don't run
-	console.log('2');
-}
-
-
-if (false){
-    // run
-    console.log('3');
-} else {
-	//won't run
-	console.log('4');
-}
-
-if (false){
-    //wont run
-    console.log('5');
-} else if (true) {
-    //run
-    console.log('6');
-} else {
-    //wont run
-    console.log('7');
-}
-`
+      code: require('raw-loader!./txt/template-string.txt').default
     }
   }
 }
 </script>
 
 <style>
+
 </style>

@@ -3,7 +3,7 @@
     <LessonBarLayout>
       <LessonBar slot="bar"></LessonBar>
       <div slot="box" class="h-full">
-        <JSEditor :code="code" :NS="code" :key="code" class="h-full w-full"></JSEditor>
+        <DOMEditor :code="code" :NS="code" :key="code" class="h-full w-full"></DOMEditor>
       </div>
     </LessonBarLayout>
   </div>
@@ -18,20 +18,10 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: `// your first variable named "a"
-var a = 1;
-// your second variable named "a"
-var b = 2;
-
-// check the value of variable "a"
-console.log(a);
-// check the value of variable "b"
-console.log(b);
-
-// check the value of variable "a" added with variable "b"
-console.log(a + b);
-`
+      code: require('raw-loader!./detail/create-dom.txt').default
     }
+  },
+  mounted () {
   }
 }
 </script>

@@ -164,7 +164,7 @@ export default {
 
 <style lang="postcss">
 .course-banner{
-  height: 60vh;
+  height: 55vh;
 }
 .course-banner-overlay{
   background-color: rgba(0, 0, 0, 0.185);

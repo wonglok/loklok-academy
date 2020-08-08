@@ -3,7 +3,7 @@
     <LessonBarLayout>
       <LessonBar slot="bar"></LessonBar>
       <div slot="box" class="h-full">
-        <JSEditor :code="code" :NS="code" :key="code" class="h-full w-full"></JSEditor>
+        <DOMEditor :code="code" :NS="code" :key="code" class="h-full w-full"></DOMEditor>
       </div>
     </LessonBarLayout>
   </div>
@@ -18,31 +18,14 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: `var students = [
-  {
-      name: 'wonglok',
-      age: 26
-  },
-  {
-      name: 'siu ming',
-      age: 27
-  }
-];
-
-console.log(students[0]);
-console.log(students[1]);
-
-//add a new student
-students.push({
-    name: 'Heather',
-    age: 20
-});
-console.log(students[2]);
-`
+      code: require('raw-loader!./detail/interact-dom.txt').default
     }
+  },
+  mounted () {
   }
 }
 </script>
 
 <style>
+
 </style>

@@ -2,6 +2,7 @@
   <div class="o3d-editor full flex flex-col lg:flex-row">
     <div v-if="useEditor" class="half-height w-full lg:w-7/12 lg:h-full  item-left bg-gray-200 border-r border-green-500">
       <ACE
+        :colorPrefix="'#'"
         @save="onSave()"
         :mode="'javascript'"
         v-model="current.vueCode"
@@ -41,6 +42,11 @@ export default {
       default () {
         return require('raw-loader!./defaultcode-js.txt').default
       }
+    },
+    NS: {
+      default () {
+        return  'O3DG2-EDITOR-DOM-TXT-' + require('raw-loader!./defaultcode-js.txt').default.length + require('raw-loader!./defaultcode-js.txt').default.slice(0, 300)
+      }
     }
   },
   components: {
@@ -73,12 +79,6 @@ export default {
     }
   },
   created () {
-    this.$on('toggle-editor', () => {
-      this.useEditor = !this.useEditor
-      this.$nextTick(() => {
-        window.dispatchEvent(new Event('resize'))
-      })
-    })
   },
   mounted () {
     this.onChangeTreeCode({ vueCode: this.code })
@@ -96,33 +96,37 @@ export default {
   },
   methods: {
     onSave () {
-      let vm = this
-      this.makeLIVE = {
-        template: `<div class="p-3">
-          <pre v-for="(log, ii) in logs" class="text-sm font-mono" :class="{ 'text-red-500': log.type === 'err' }" :key="ii">{{ log.text }}</pre>
-        </div>`,
-        data () {
-          return {
-            logs: [],
-            errs: [],
-          }
-        },
-        mounted () {
-          try {
-            let fnc = new Function('console', vm.current.vueCode)
-            let fakeConsole = {
-              log: (...args) => {
-                this.logs.push({ text: args.map(e => JSON.stringify(e, null, '  ')).join(' '), type: 'log' })
-                console.log(...args)
-              }
+      clearTimeout(this.saveerID)
+      this.saveerID = setTimeout(() => {
+        let vm = this
+        this.makeLIVE = {
+          template: `<div>
+            <iframe v-if="url" :src="url" style="width: 100vw; height: 100vh;" frameborder="0"></iframe>
+          </div>`,
+          data () {
+            return {
+              url: false
             }
-            fnc(fakeConsole)
-          } catch (e) {
-            this.logs.push({ text: e, type: 'err' })
-            console.error(e)
+          },
+          mounted () {
+            try {
+              let jsEncoded = encodeURIComponent(vm.current.vueCode)
+              let html = `
+                <div style="display: none;" id="jsencode">${jsEncoded}</div>
+                <script${'>'}
+                  eval(decodeURIComponent(document.querySelector('#jsencode').innerText))
+                ${'<'}/script>
+              `
+
+              let blobURL = URL.createObjectURL(new Blob([html], { type: 'text/html' }))
+              console.log(html)
+              this.url = blobURL
+            } catch (e) {
+              console.error(e)
+            }
           }
         }
-      }
+      }, 10)
     },
     onChangeTreeCode ({ vueCode }) {
       this.current.vueCode = vueCode

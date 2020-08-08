@@ -4,7 +4,7 @@ export let courses = [
 ]
 
 var path = require('path')
-function loadCourse (courseName, prefix, underDevelopment, rCtx) {
+function loadCourse (courseName, prefix, rCtx) {
   let lessonsRaw = []
   rCtx.keys().forEach(key => {
     let filename = path.basename(key).replace('.vue', '')
@@ -27,8 +27,7 @@ function loadCourse (courseName, prefix, underDevelopment, rCtx) {
   let oneCourse = {
     meta: {
       courseName,
-      prefix,
-      underDevelopment
+      prefix
     },
     path: prefix,
     name: courseName,
@@ -45,8 +44,9 @@ function loadCourse (courseName, prefix, underDevelopment, rCtx) {
   return oneCourse
 }
 
-loadCourse('JavaScript Basics', '/lessons/js-basics', false, require.context('./components/WebGL/AppUIs/CourseForJSBasics', true, /\.vue$/, 'lazy'), 'lazy')
-loadCourse('JavaScript ES6', '/lessons/es6-basics', true, require.context('./components/WebGL/AppUIs/CourseForES6', true, /\.vue$/, 'lazy'), 'lazy')
+loadCourse('JavaScript Basics', '/lessons/js-basics', require.context('./components/WebGL/AppUIs/CourseForJSBasics', true, /\.vue$/, 'lazy'), 'lazy')
+loadCourse('JavaScript ES6', '/lessons/es6-basics', require.context('./components/WebGL/AppUIs/CourseForES6', true, /\.vue$/, 'lazy'), 'lazy')
+loadCourse('JavaScript DOM', '/lessons/dom-basics', require.context('./components/WebGL/AppUIs/CourseForDOM', true, /\.vue$/, 'lazy'), 'lazy')
 
 export const getLessons = () => {
   let oneCourse = courses.find(c => c.meta.prefix === router.currentRoute.meta.prefix)
@@ -81,14 +81,16 @@ export const routes = [
 
 export const router = new VueRouter({
   mode: 'history',
-  routes
-})
-
-export const getDynamicLinks = () => {
-  let currentArr = routes.find(e => router.currentRoute.path.indexOf(e.path) !== -1)
-  let links = []
-  if (currentArr) {
-    links = currentArr.children
+  routes,
+  scrollBehavior (to, from, savedPos) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (savedPos) {
+          resolve(savedPos)
+        } else {
+          resolve({ x: 0, y: 0 })
+        }
+      }, 1)
+    })
   }
-  return links
-}
+})

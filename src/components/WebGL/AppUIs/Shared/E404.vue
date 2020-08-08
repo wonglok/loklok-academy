@@ -3,18 +3,20 @@
     <HeaderNav></HeaderNav>
     <div class="course-banner relative">
       <GLArtCanvas :rounded="'0px 0px 0px 0px'" class="full" bgcolor="#000000">
-        <MBLinesBloom></MBLinesBloom>
+        <!-- <MBLinesBloom></MBLinesBloom> -->
         <Bloomer :settings="{
           exposure: 1.0,
           bloomStrength: 2,
           bloomThreshold: 10.72 / 100.0,
           bloomRadius: 50.99 / 100.0 * 2
         }"></Bloomer>
+        <FastFlame :sx="3.6"></FastFlame>
       </GLArtCanvas>
       <div class="absolute course-banner-overlay top-0 left-0 w-full h-full flex flex-col justify-center items-center">
-        <div class="text-white text-2xl lg:text-5xl">Not Found</div>
+        <div class="text-white text-2xl lg:text-4xl">Not Found</div>
         <div class="text-white text-xl lg:text-3xl">or</div>
-        <div class="text-white text-2xl lg:text-5xl">Under Development</div>
+        <div class="text-white text-2xl lg:text-4xl">Under Development</div>
+        <div class="text-white underline mt-12 cursor-pointer" @click="$router.go(-1)">Let's Go Back</div>
       </div>
     </div>
 

@@ -38,6 +38,9 @@ export default {
     Chrome
   },
   props: {
+    colorPrefix: {
+      default: '0x'
+    },
     value: {},
     mode: {
       type: String,
@@ -149,6 +152,17 @@ export default {
       live(this.$refs.mounter, 'mouseup', 'ace_content', () => {
         let text = editor.getSelectedText()
         let range = editor.selection.getAllRanges()[0]
+
+        let trialRange = editor.selection.getRange()
+        trialRange.start.column -= 1
+        let trailColor = editor.getSession().doc.getTextRange(trialRange);
+
+        if ((trailColor.indexOf('#') === 0 && trailColor.length === 7)) {
+          editor.selection.setRange(trialRange)
+          range = trialRange
+          text = trailColor
+        }
+
         let coord = editor.renderer.textToScreenCoordinates(range.start.row, range.start.column)
         let { pageX, pageY } = coord
         this.widget.pageX = pageX
@@ -158,9 +172,9 @@ export default {
           this.widget.display = true
           this.widget.type = 'color'
           let { start, end } = range
-          this.current.color = text.replace('0x', '#')
+          this.current.color = text.replace('#', '#')
           this.onChangeColor = () => {
-            this.editor.session.replace({ start, end }, this.current.color.hex.replace('#', '0x').toLowerCase())
+            this.editor.session.replace({ start, end }, this.current.color.hex.replace('#', '#').toLowerCase())
             this.$emit('slide', editor.getValue())
           }
         } else if (text.indexOf('0x') === 0 && text.length === 8) {

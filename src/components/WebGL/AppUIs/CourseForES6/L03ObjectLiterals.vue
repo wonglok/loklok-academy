@@ -18,30 +18,12 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: `var robotFactory = function (){
-    var api = {};
-    var robot = {
-        name: 'lok',
-        takes: [{
-          subject: 'English',
-          score: 89
-        }]
-    };
-
-    api.getRobot = function () {
-      return robot
-    };
-
-    return api;
-};
-
-let factory = robotFactory();
-console.log(factory.getRobot());
-`
+      code: require('raw-loader!./txt/object-literals.txt').default
     }
   }
 }
 </script>
 
 <style>
+
 </style>

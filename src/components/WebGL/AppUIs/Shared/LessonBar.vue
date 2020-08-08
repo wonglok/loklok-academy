@@ -1,6 +1,13 @@
 <template>
   <div class="full overflow-scroll scrolling-touch">
-    <router-link :to="`${lesson.path}`" exact-active-class="bg-gray-300" class="px-3 py-4 block text-sm border-b" v-for="(lesson, li) in lessons" :key="li">
+    <router-link to="/course-catalogue" class="hover px-3 py-4 block text-center text-sm border-b bg-gray-200">
+      <div class="inline-block loopsy">← Back to Catalogue</div>
+    </router-link>
+
+    <div class="px-3 py-4 block text-sm border-b bg-blue-300 hover:bg-blue-200 text-center" v-if="lessons && lessons[0]">
+      {{ lessons[0].meta.courseName }}
+    </div>
+    <router-link :to="`${lesson.path}`" exact-active-class="bg-gray-300" class=" hover:bg-teal-100 transition-colors duration-500 px-3 py-4 block text-sm border-b" v-for="(lesson, li) in lessons" :key="li">
       {{ pad(li + 1, 2) }} {{ lesson.name }}
     </router-link>
   </div>
@@ -34,6 +41,28 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
+@keyframes loopsy {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+@keyframes blink {
+  0% {
+    @apply bg-blue-600 text-white;
+  }
+  50% {
+    @apply bg-blue-100 text-blue-600;
+  }
+  100% {
+    @apply bg-blue-600 text-white;
+  }
+}
 
+.hover:hover .loopsy{
+  animation: loopsy 2s linear 0s infinite normal both;
+}
 </style>

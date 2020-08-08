@@ -3,7 +3,7 @@
     <LessonBarLayout>
       <LessonBar slot="bar"></LessonBar>
       <div slot="box" class="h-full">
-        <JSEditor :code="code" :NS="code" :key="code" class="h-full w-full"></JSEditor>
+        <DOMEditor :code="code" :NS="code" :key="code" class="h-full w-full"></DOMEditor>
       </div>
     </LessonBarLayout>
   </div>
@@ -18,19 +18,10 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: `// refernece a number
-var myNumber = 12345;
-// refernece a string (words)
-var myName = 'Lok Lok';
-// refernece an object
-var myObject = {};
-
-
-console.log('myNumber is:', typeof myNumber);
-console.log('myName is:', typeof myName);
-console.log('myObject is:', typeof myObject);
-`
+      code: require('raw-loader!./detail/style-dom.txt').default
     }
+  },
+  mounted () {
   }
 }
 </script>

@@ -4,7 +4,7 @@
       <div class="items-center flex flex-wrap justify-center">
         <div class="w-full md:w-4/12 px-4 text-center inline-block">
           <router-link
-            to="/course"
+            to="/course-catalogue"
             class="relative cursor-pointer flex flex-col min-w-0 break-words bg-white w-full mb-8 border shadow-lg rounded-lg hover:bg-gray-100 transition-colors duration-300"
           >
             <div class="px-4 py-5 flex-auto -mt-12">
