@@ -29,10 +29,10 @@ export default {
     height: 100%;
   }
   .left-lesson-bar{
-    width: 275px;
+    width: 250px;
   }
   .right-lesson-box{
-    width: calc(100% - 275px);
+    width: calc(100% - 250px);
   }
 }
 

@@ -1,10 +1,10 @@
 <template>
   <div class="full overflow-scroll scrolling-touch relative">
-    <router-link to="/course-catalogue" class="hover px-3 py-4 block text-center text-sm border-b bg-gray-200">
+    <router-link to="/course-catalogue" class="hover px-3 py-4 block text-center text-xs border-b bg-gray-200">
       <div class="inline-block loopsy">← Back to Catalogue</div>
     </router-link>
 
-    <div class="px-3 py-4 block text-sm border-b bg-green-300 hover:bg-green-200 text-center" v-if="lessons && lessons[0]">
+    <div class="px-3 py-4 block text-xs border-b bg-gray-200 hover:bg-gray-300 text-center" v-if="lessons && lessons[0]">
       {{ lessons[0].meta.courseName }}
     </div>
     <router-link :to="`${lesson.path}`" exact-active-class="bg-teal-300" class=" hover:bg-teal-100 transition-colors duration-500 px-3 py-4 block text-sm border-b" v-for="(lesson, li) in lessons" :key="li">
@@ -12,7 +12,7 @@
     </router-link>
 
 
-    <router-link :to="nextCourse.path" class="px-3 py-4 block text-sm border-b bg-green-300 hover:bg-green-200 text-center absolute left-0 w-full bottom-0" v-if="nextCourse">
+    <router-link :to="nextCourse.path" class="px-3 py-4 block text-xs border-b bg-gray-200 hover:bg-gray-300 text-center absolute left-0 w-full bottom-0" v-if="nextCourse">
       Up Next: {{ nextCourse.meta.courseName }}
     </router-link>
   </div>
@@ -73,7 +73,7 @@ export default {
 }
 
 .hover:hover .loopsy{
-  animation: loopsy 2s linear 0s infinite normal both;
+  animation: loopsy 1s linear 0s infinite normal both;
 }
 .b-54{
   bottom: 54px;
