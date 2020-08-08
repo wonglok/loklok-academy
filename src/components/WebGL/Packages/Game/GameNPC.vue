@@ -46,7 +46,7 @@ export default {
         chroma = new ShaderCubeChrome({
           renderer: this.ctx.renderer,
           onLoop: this.onLoop,
-          res: 50,
+          res: 16,
           color: new Color('#ffffff')
         })
       }
@@ -89,6 +89,9 @@ export default {
 
       this.$watch('move', () => {
         this.npc.act({ name: this.move })
+      })
+      this.$on('act', ({ name }) => {
+        this.npc.act({ name })
       })
       this.$watch('opacity', () => {
         this.npc.setOpacity(this.opacity)

@@ -47,6 +47,11 @@ export function allInViewPort(el) {
 export const RenderRoot = {
   name: 'RenderRoot',
   mixins: [O3DG2],
+  props: {
+    dpi: {
+      default: window.devicePixelRatio || 2
+    }
+  },
   components: {
     O3D: require('../Core/O3D.vue').default
   },
@@ -184,7 +189,7 @@ export const RenderRoot = {
       this.rootMounterElement.append(renderer.domElement)
       this.touchdiv = renderer.domElement
       this.onResize(() => {
-        let dpi = window.devicePixelRatio || 1.0
+        let dpi = this.dpi
         // if (dpi > 2) {
         //   dpi = 2
         // }

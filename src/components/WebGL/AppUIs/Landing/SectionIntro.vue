@@ -76,23 +76,8 @@
               Courses on Front End Technologies:
             </div>
             <ul class="pl-6 list-disc">
-              <li class="">
-                JavaScript Basics (In Progress)
-              </li>
-              <li class="">
-                ES6 Basics (In Progress)
-              </li>
-              <li class="">
-                Canvas Basics (In Progress)
-              </li>
-              <li class="">
-                WebGL Concept Basics (In Progress)
-              </li>
-              <li class="">
-                ThreeJS Basic Level (In Progress)
-              </li>
-              <li class="">
-                ThreeJS Intermediate Level (In Progress)
+              <li class="" v-for="(cr, cri) in courses" :key="cri">
+                {{ cr.name }} <span v-if="cr.inProgress">(In Progress)</span>
               </li>
             </ul>
           </div>
@@ -147,10 +132,17 @@
 </template>
 
 <script>
+import { routes } from '../../../../router'
+
 export default {
   mixins: [
     require('../../Core/O3DVue').O3DVue
-  ]
+  ],
+  data () {
+    return {
+      courses: routes.find(r => r.path === '/course').children.filter(e => e.name !== 'Course Catalogue')
+    }
+  }
 }
 </script>
 

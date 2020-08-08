@@ -92,7 +92,7 @@ export class FastFlame {
         return (vout);
       }
 
-      varying vec3 varColor;
+      // varying vec3 varColor;
 
       varying vec2 vUv;
       void main (void) {
@@ -121,8 +121,8 @@ export class FastFlame {
         vec4 worldPosition = modelMatrix * vec4( transformedPosition.xyz, 1.0 );
         vec3 worldNormal = normalize( mat3( modelMatrix[0].xyz, modelMatrix[1].xyz, modelMatrix[2].xyz ) * transformedNormal.xyz );
 
-        vec3 I = worldPosition.xyz - cameraPosition;
-        varColor = refract(normalize(I), worldNormal, 1.03);
+        // vec3 I = worldPosition.xyz - cameraPosition;
+        // varColor = refract(normalize(I), worldNormal, 1.03);
 
         gl_Position = projectionMatrix * mvPosition;
         gl_PointSize = (1.0 + 1.5 * aspect);
@@ -170,7 +170,6 @@ export class FastFlame {
       }
 
       varying vec2 vUv;
-      varying vec3 varColor;
 
       void main (void) {
         float oTime = time;

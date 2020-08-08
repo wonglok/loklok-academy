@@ -22,12 +22,15 @@ export default {
     async run () {
       this.scene = new Scene()
       // this.scene.background = new Color('#bababa')
-      this.scene.background = new Color('#000000')
+      this.scene.background = new Color('#bababa')
       this.scene.add(this.o3d)
 
       this.onEnsure(() => this.ctx.renderer)
         .then(() => {
           this.$emit('ready', this)
+          this.ctx.renderer.domElement.addEventListener('click', () => {
+            this.$emit('click')
+          })
         })
     }
   },
