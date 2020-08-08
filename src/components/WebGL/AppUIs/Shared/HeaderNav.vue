@@ -37,6 +37,9 @@
           <svg class="inline-block" @click="showMenu = false" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg>
         </div>
         <div class="border-b border-black w-full pb-2 mb-3">Menu</div>
+        <a href="https://www.linkedin.com/in/wonglok831/">Open for Commission</a>
+        <div class="h-12"></div>
+        <div class="border-b border-black w-full pb-2 mb-3">Course</div>
         <router-link class="mb-4" tag="div" :to="`/course/${link.path}`" v-for="(link, idx) in course" :key="idx">
           {{ link.name }}
         </router-link>

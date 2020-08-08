@@ -155,7 +155,9 @@
           </div>
         </div>
       </div>
+
       <hr class="my-6 border-gray-400" />
+
       <div
         class="flex flex-wrap items-center md:justify-between justify-center"
       >

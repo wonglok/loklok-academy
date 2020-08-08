@@ -55,7 +55,7 @@
           </div>
         </div>
       </div>
-      <div class="flex flex-wrap items-center mt-32">
+      <div class="flex flex-wrap items-center mt-24">
         <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
           <div
             class="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100"
@@ -136,7 +136,7 @@
                 From Zero to Hero
               </h4>
               <p class="text-md font-light mt-2 text-white">
-                It's always intimidating to do what requires time and proper training. But with preserverernce and every lesson on the journey, you are getting progress and closer and closer to your goal everyday.
+                It's always intimidating to do what requires time and proper training. But with perseverance and every lesson on the journey, you are getting progress and closer and closer to your goal everyday.
               </p>
             </blockquote>
           </div>
