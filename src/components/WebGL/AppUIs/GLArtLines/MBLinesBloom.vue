@@ -37,7 +37,7 @@ export default {
           image.onload = () => {
             let element = this.ctx.element
             let elRect = element.getBoundingClientRect()
-            let dpi = elRect.width / image.width * 2.333
+            let dpi = elRect.width / image.width * window.devicePixelRatio
             ctx.canvas.width = dpi * image.width
             ctx.canvas.height = dpi * image.height
             ctx.fillStyle = 'transparent'

@@ -125,7 +125,7 @@
           </div>
           <div class="w-full md:w-1/2 lg:w-3/5 rounded-lg md:mt-0 mt-12">
             <div class="course-catalogue-art rounded-lg ">
-              <GLArtCanvas class="h-full w-full rounded-lg" :rounded="'8px 8px 8px 8px'">
+              <GLArtCanvas v-if="!isSmall" class="h-full w-full rounded-lg" :rounded="'8px 8px 8px 8px'">
                 <GLFlower></GLFlower>
               </GLArtCanvas>
             </div>
@@ -146,6 +146,7 @@ export default {
   ],
   data () {
     return {
+      isSmall: window.innerWidth < 500,
       jsbasics: routes.find(r => r.path === '/lessons/js-basics').children
     }
   }
