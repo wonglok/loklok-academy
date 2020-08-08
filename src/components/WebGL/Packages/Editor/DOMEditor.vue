@@ -100,8 +100,8 @@ export default {
       this.saveerID = setTimeout(() => {
         let vm = this
         this.makeLIVE = {
-          template: `<div>
-            <iframe v-if="url" :src="url" style="width: 100vw; height: 100vh;" frameborder="0"></iframe>
+          template: `<div class="h-full">
+            <iframe v-if="url" :src="url" style="width: 100vw; height: 100%;" frameborder="0"></iframe>
           </div>`,
           data () {
             return {
