@@ -8,12 +8,38 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-var geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2);
-var material = new THREE.MeshBasicMaterial({ color: 0xe01f1f, wireframe: true });
-var cube = new THREE.Mesh( geometry, material );
+var geometry = new THREE.BoxBufferGeometry(50, 50, 50, 25, 25, 25);
+
+let glsl = v => v[0]
+let uniforms = {
+  time: { value: 0 }
+}
+var material = new THREE.ShaderMaterial({
+  uniforms,
+  transparent: true,
+  vertexShader: glsl`
+    uniform float time;
+    varying vec3 v_pos;
+    void main(void) {
+      vec3 nPos = position;
+      nPos.x += sin(nPos.y * 0.1 + time * 10.0) * 10.0;
+
+      v_pos = vec3(nPos.x, nPos.y, nPos.z);
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(nPos, 1.0);
+    }
+  `,
+  fragmentShader: glsl`
+    varying vec3 v_pos;
+
+    void main (void) {
+      gl_FragColor = vec4(normalize(v_pos.xyz) + 0.3, 1.0);
+    }
+  `
+});
+var cube = new THREE.LineSegments( geometry, material );
 scene.add(cube);
 
-camera.position.z = 5;
+camera.position.z = 100;
 
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight)
@@ -26,9 +52,11 @@ controls.enableDamping = true
 var animate = function () {
   requestAnimationFrame( animate );
   controls.update()
+  let time = window.performance.now() * 0.001
 
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  cube.rotation.y += 0.01 * 0.3;
+
+  uniforms.time.value = time
 
   renderer.render( scene, camera );
 };

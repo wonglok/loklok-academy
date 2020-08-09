@@ -85,6 +85,10 @@ export default {
     this.$nextTick(() => {
       this.onSave()
     })
+
+    this.$on('run', () => {
+      this.onSave()
+    })
     let raf = () => {
       window.requestAnimationFrame(raf)
       if (this.needsRunSave) {

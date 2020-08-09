@@ -8,8 +8,24 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-var geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2);
-var material = new THREE.MeshBasicMaterial({ color: 0xe01f1f, wireframe: true });
+
+var lightFront = new THREE.DirectionalLight(0xffffff, 0.4);
+lightFront.position.z = 100
+scene.add(lightFront)
+
+var pointLightFront = new THREE.PointLight(0xffffff, 0.4);
+pointLightFront.position.z = 100
+scene.add(pointLightFront)
+
+var lightTop = new THREE.DirectionalLight(0xffffff, 0.4, 0);
+lightTop.position.y = 100
+scene.add(lightTop)
+
+var geometry = new THREE.TorusKnotBufferGeometry(10, 2.5, 181, 20);
+geometry.scale(0.1, 0.1, 0.1);
+
+let texture = new THREE.TextureLoader().load(YELLOW_MAT_CAP);
+var material = new THREE.MeshMatcapMaterial({ matcap: texture, color: 0xffffff });
 var cube = new THREE.Mesh( geometry, material );
 scene.add(cube);
 
@@ -23,6 +39,7 @@ window.dispatchEvent(new Event('resize'))
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true
+
 var animate = function () {
   requestAnimationFrame( animate );
   controls.update()

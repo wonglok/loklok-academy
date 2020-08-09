@@ -22,7 +22,7 @@ lightTop.position.y = 100
 scene.add(lightTop)
 
 var geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2);
-var material = new THREE.MeshStandardMaterial({ color: 0x00ff00, wireframe: false });
+var material = new THREE.MeshStandardMaterial({ color: 0xb331a1, wireframe: false });
 var cube = new THREE.Mesh( geometry, material );
 scene.add(cube);
 

@@ -30,12 +30,12 @@ let o3d = new THREE.Object3D()
 cube.add(o3d)
 
 var geometry2 = new THREE.BoxBufferGeometry();
-var material2 = new THREE.MeshStandardMaterial({ flatShading: true, color: 0x00ffff, wireframe: false });
+var material2 = new THREE.MeshStandardMaterial({ flatShading: false, color: 0x00ffff, wireframe: false });
 var cube2 = new THREE.Mesh( geometry2, material2 );
 cube2.position.x = 3
 o3d.add(cube2)
 
-var geometry3 = new THREE.SphereGeometry(1, 32, 32);
+var geometry3 = new THREE.SphereGeometry(1, 15, 15);
 var material3 = new THREE.MeshStandardMaterial({ flatShading: true, color: 0xffff00, wireframe: false });
 var cube3 = new THREE.Mesh( geometry3, material3 );
 cube3.position.x = -4
@@ -62,7 +62,7 @@ var animate = function () {
 
   cube2.rotation.x += 0.03;
   cube2.rotation.y += 0.01;
-  cube2.rotation.z += 0.01;
+  cube2.rotation.z += 0.11;
 
   cube3.rotation.x += 0.01;
   cube3.rotation.y += 0.01;
