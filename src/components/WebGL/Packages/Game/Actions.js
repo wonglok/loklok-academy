@@ -24,6 +24,20 @@ export class Actions {
     action.reset().fadeIn(0.1).play()
   }
 
+  async actOnce ({ act, resting }) {
+    this.mixer.stopAllAction()
+    let action = await this.getActionByName({ name: act, inPlace: false })
+    action.reset()
+    action.repetitions = 1
+    action.fadeIn(0.1).play()
+    clearTimeout(this.toutActOnce)
+    this.toutActOnce = setTimeout(async () => {
+      this.mixer.stopAllAction()
+      let restore = await this.getActionByName({ name: resting, inPlace: false })
+      restore.reset().fadeIn(0.1).play()
+    }, action.duration * 1000 * 1.1)
+  }
+
   setInPlaceClip ({ clip }) {
     if (clip.tracks[0] && clip.tracks[0].name === 'mixamorigHips.position') {
       let values = clip.tracks[0].values

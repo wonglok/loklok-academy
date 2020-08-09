@@ -10,9 +10,10 @@
     <router-link :to="`${lesson.path}`" exact-active-class="bg-teal-300" class=" hover:bg-teal-100 transition-colors duration-500 px-3 py-4 block text-sm border-b" v-for="(lesson, li) in lessons" :key="li">
       {{ pad(li + 1, 2) }} {{ lesson.name }}
     </router-link>
+    <div class="padder" style="height: 250px;"></div>
 
 
-    <router-link :to="nextCourse.path" class="px-3 py-4 block text-xs border-b bg-gray-200 hover:bg-gray-300 text-center absolute left-0 w-full bottom-0" v-if="nextCourse">
+    <router-link :to="nextCourse.path" style="width: 250px;" class="px-3 py-4 block text-xs border-b bg-gray-200 hover:bg-gray-300 text-center fixed left-0 w-full bottom-0 z-10" v-if="nextCourse">
       Up Next: {{ nextCourse.meta.courseName }}
     </router-link>
   </div>
@@ -20,7 +21,11 @@
 
 <script>
 import { courses } from '../../../../router'
+import { O3DVue } from '../../Core/O3DVue'
 export default {
+  mixins: [
+    O3DVue
+  ],
   data () {
     let oneCourse = courses.find(c => c.meta.prefix === this.$route.meta.prefix)
     let currentCouseIdx = courses.findIndex(c => c.meta.prefix === this.$route.meta.prefix)

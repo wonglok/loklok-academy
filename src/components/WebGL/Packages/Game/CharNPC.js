@@ -68,6 +68,12 @@ export class CharNPC {
     }
   }
 
+  actOnce ({ act, resting }) {
+    if (this.actions) {
+      this.actions.actOnce({ act, resting })
+    }
+  }
+
   setOpacity (v) {
     this.out.o3d.traverse(async (item) => {
       if (item.isMesh) {

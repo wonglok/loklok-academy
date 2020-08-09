@@ -92,6 +92,10 @@ export default {
       this.$watch('move', () => {
         this.npc.act({ name: this.move })
       })
+
+      this.$on('act-once', ({ act, resting }) => {
+        this.npc.actOnce({ act, resting })
+      })
       this.$on('act', ({ name }) => {
         this.npc.act({ name })
       })

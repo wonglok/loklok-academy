@@ -88,6 +88,7 @@ export default {
 
     this.$on('run', () => {
       this.onSave()
+
     })
     let raf = () => {
       window.requestAnimationFrame(raf)
@@ -151,8 +152,10 @@ export default {
 
               let blobURL = URL.createObjectURL(new Blob([html], { type: 'text/html' }))
               this.url = blobURL
+              this.$root.$emit('update-avatar-move-inc')
             } catch (e) {
               console.error(e)
+              this.$root.$emit('update-avatar-bad-move-inc')
             }
           }
         }

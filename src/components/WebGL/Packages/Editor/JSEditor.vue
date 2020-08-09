@@ -117,9 +117,12 @@ export default {
               }
             }
             fnc(fakeConsole)
+
+            this.$root.$emit('update-avatar-move-inc')
           } catch (e) {
             this.logs.push({ text: e, type: 'err' })
             console.error(e)
+            this.$root.$emit('update-avatar-bad-move-inc')
           }
         }
       }

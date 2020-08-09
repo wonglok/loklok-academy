@@ -11,7 +11,7 @@ export class CamLock {
   async run ({ target }) {
     let lookTarget = new Object3D()
     target.add(lookTarget)
-    lookTarget.position.y = 10
+    lookTarget.position.y = -10
 
     let TempVec3 = new Vector3()
     let TempVec3Lerp = TempVec3.clone()

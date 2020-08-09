@@ -9,6 +9,11 @@
 <script>
 import { Scene, Color } from 'three'
 export default {
+  props: {
+    bgcolor: {
+      default: '#bababa'
+    }
+  },
   mixins: [
     require('../../Core/RenderRoot').RenderRoot
   ],
@@ -22,7 +27,12 @@ export default {
     async run () {
       this.scene = new Scene()
       // this.scene.background = new Color('#bababa')
-      this.scene.background = new Color('#bababa')
+      if (this.bgcolor) {
+        if (this.bgcolor !== 'transparent') {
+          this.scene.background = new Color(this.bgcolor)
+        }
+      }
+
       this.scene.add(this.o3d)
 
       this.onEnsure(() => this.ctx.renderer)
