@@ -174,7 +174,7 @@ class OrganisedCanvas {
       varying vec3 v_color;
       varying vec3 v_position;
       void main() {
-        gl_FragColor = vec4(v_color + normalize(v_position), 0.9);
+        gl_FragColor = vec4(v_color + v_position, 0.9);
       }
     `
 
@@ -184,7 +184,9 @@ class OrganisedCanvas {
 
     this.attributes = []
 
-    let a_position_array = new Array(3 * 2 * 100)
+    let numberOfLines = 200
+
+    let a_position_array = new Array(3 * 2 * numberOfLines)
     let a_position = new BufferAttribute({ gl: this.gl, program: this.glProgram.program, name: 'a_position', array: a_position_array, memberCount: 3 })
     this.attributes.push(a_position)
     this.loops.push({
@@ -192,17 +194,23 @@ class OrganisedCanvas {
       fn: () => {
         let time = this.clock / 1000
 
-        // 3data per vertex, 2 vertex per line = 6.
+        // 6 data items, 3(xyz) = start of line, 3(xyz) = end of line
         let length = a_position.typedArray.length / 6
-        let radius = 1.0
         for (let ix = 0; ix < length; ix += 1) {
-          let delta = ix / length * Math.PI
+          var startAngle = ((ix) / length) * Math.PI * 2.0;
+          var endAngle = (((ix + 1)) / length) * Math.PI * 2.0;
 
-          let x1 = (Math.sin(time + delta) * Math.sin(time + delta) - 0.5) * radius
-          let y1 = Math.sin(time + delta) * Math.cos(time + delta) * radius
+          var ballRadius = 0.75;
 
-          let x2 = (Math.sin(time + 0.3 + delta) * Math.sin(time + 0.3 + delta) - 0.5) * (radius - 0.5)
-          let y2 = Math.sin(time + 0.3 + delta) * Math.cos(time + 0.3 + delta) * (radius - 0.5)
+          var numOfWaves = 5;
+          var waveHeight = 0.2;
+          var wavyRadius = ballRadius + waveHeight * Math.sin((endAngle + time * 0.25) * numOfWaves);
+
+          var x1 = ballRadius * Math.cos(startAngle);
+          var y1 = ballRadius * Math.sin(startAngle);
+
+          var x2 = wavyRadius * Math.cos(endAngle + 0.4);
+          var y2 = wavyRadius * Math.sin(endAngle + 0.4);
 
           a_position.typedArray[ix * 6 + 0] = x1
           a_position.typedArray[ix * 6 + 1] = y1
@@ -215,15 +223,20 @@ class OrganisedCanvas {
       }
     })
 
-    let a_color_array = new Array(3 * 2 * 100)
-    let length = a_color_array.length
-    for (let ix = 0; ix < length; ix += 3) {
-      a_color_array[ix + 0] = Math.random()
-      a_color_array[ix + 1] = Math.random()
-      a_color_array[ix + 2] = Math.random()
-    }
+    let a_color_array = new Array(3 * 2 * numberOfLines)
     let a_color = new BufferAttribute({ gl: this.gl, program: this.glProgram.program, name: 'a_color', array: a_color_array, memberCount: 3 })
     this.attributes.push(a_color)
+    // 6 data items, 3(xyz) = start of line, 3(xyz) = end of line
+    let length = a_color.typedArray.length / 6
+    for (let ix = 0; ix < length; ix += 1) {
+      a_color.typedArray[ix * 6 + 0] = 1
+      a_color.typedArray[ix * 6 + 1] = 1
+      a_color.typedArray[ix * 6 + 2] = 1
+
+      a_color.typedArray[ix * 6 + 3] = 0.5
+      a_color.typedArray[ix * 6 + 4] = 0.5
+      a_color.typedArray[ix * 6 + 5] = 0.5
+    }
 
     let rAFID = 0
     let rAF = () => {
