@@ -112,7 +112,7 @@ export default {
           },
           mounted () {
             try {
-              let jsEncoded = encodeURIComponent(vm.current.vueCode)
+              let jsurl = URL.createObjectURL(new Blob([vm.current.vueCode], { type: 'text/javascript' }))
               let html = `
 
                 <style>
@@ -124,9 +124,8 @@ export default {
                     height: 100%;
                   }
                 </style>
-                <div style="display: none;" id="jsencode">${jsEncoded}</div>
-                <script${'>'}
-                  eval(decodeURIComponent(document.querySelector('#jsencode').innerText))
+                <script src="${jsurl}" ${'>'}
+
                 ${'<'}/script>
               `
               let rect = this.$el.getBoundingClientRect()

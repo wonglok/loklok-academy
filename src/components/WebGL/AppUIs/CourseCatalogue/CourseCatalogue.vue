@@ -82,7 +82,7 @@
                 <i class="fa fa-asterisk"></i>
               </div>
               <div @click="() => $router.push('/lessons/webgl-basics')" class="flex-grow pl-4 cursor-pointer hover:underline">
-                <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">WebGL Concept Basics</h2>
+                <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">WebGL Raw API Basics</h2>
                 <p class="leading-relaxed">We will learn about the journey of a partcile from code to pixel on screen.</p>
               </div>
             </div>
