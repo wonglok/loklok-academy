@@ -1,7 +1,6 @@
 import VueRouter from 'vue-router'
 
-export let courses = [
-]
+export let courses = []
 
 var path = require('path')
 function loadCourse (courseName, prefix, rCtx) {
@@ -35,7 +34,7 @@ function loadCourse (courseName, prefix, rCtx) {
     children: [
       {
         path: prefix,
-        redirect: `${lessons[0].path}`,
+        redirect: `${lessons[0] && lessons[0].path}`,
       },
       ...lessons
     ]
@@ -44,11 +43,46 @@ function loadCourse (courseName, prefix, rCtx) {
   return oneCourse
 }
 
-loadCourse('JavaScript Basics', '/lessons/js-basics', require.context('./components/WebGL/AppUIs/CourseForJSBasics', true, /\.vue$/, 'lazy'), 'lazy')
-loadCourse('JavaScript ES6', '/lessons/es6-basics', require.context('./components/WebGL/AppUIs/CourseForES6', true, /\.vue$/, 'lazy'), 'lazy')
-loadCourse('JavaScript DOM', '/lessons/dom-basics', require.context('./components/WebGL/AppUIs/CourseForDOM', true, /\.vue$/, 'lazy'), 'lazy')
-loadCourse('Canvas 2D Basics', '/lessons/canvas-2d-basics', require.context('./components/WebGL/AppUIs/CourseForCanvas2D', true, /\.vue$/, 'lazy'), 'lazy')
-loadCourse('WebGL Raw API Basics', '/lessons/webgl-basics', require.context('./components/WebGL/AppUIs/CourseForWebGLConcept', true, /\.vue$/, 'lazy'), 'lazy')
+let cfgs = [
+  {
+    name: 'JavaScript Basics',
+    path: '/lessons/js-basics',
+    rCTX: require.context('./components/WebGL/AppUIs/CourseForJSBasics', true, /\.vue$/, 'lazy')
+  },
+  {
+    name: 'JavaScript ES6',
+    path: '/lessons/es6-basics',
+    rCTX: require.context('./components/WebGL/AppUIs/CourseForES6', true, /\.vue$/, 'lazy')
+  },
+  {
+    name: 'JavaScript DOM',
+    path: '/lessons/dom-basics',
+    rCTX: require.context('./components/WebGL/AppUIs/CourseForDOM', true, /\.vue$/, 'lazy')
+  },
+  {
+    name: 'Canvas 2D Basics',
+    path: '/lessons/canvas-2d-basics',
+    rCTX: require.context('./components/WebGL/AppUIs/CourseForCanvas2D', true, /\.vue$/, 'lazy')
+  },
+  {
+    name: 'WebGL Raw API Basics',
+    path: '/lessons/webgl-basics',
+    rCTX: require.context('./components/WebGL/AppUIs/CourseForWebGLConcept', true, /\.vue$/, 'lazy')
+  },
+  {
+    name: 'ThreeJS Basics',
+    path: '/lessons/threejs-basics',
+    rCTX: require.context('./components/WebGL/AppUIs/CourseForTHREEJsBasics', true, /\.vue$/, 'lazy')
+  },
+]
+
+cfgs.forEach(({ name, path, rCTX }) => {
+  loadCourse(
+    name,
+    path,
+    rCTX
+  )
+})
 
 export const getLessons = () => {
   let oneCourse = courses.find(c => c.meta.prefix === router.currentRoute.meta.prefix)

@@ -130,7 +130,7 @@ export default {
                     </style>
                   </head>
                   <body>
-                      <script src="${jsurl}" ${'>'}
+                      <script type="module" src="${jsurl}" ${'>'}
                       ${'<'}/script>
                   </body>
                 </html>

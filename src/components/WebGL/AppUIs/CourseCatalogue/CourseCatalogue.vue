@@ -91,10 +91,10 @@
               <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
                 <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
               </div>
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-500 inline-flex items-center justify-center text-white relative z-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-pink-500 inline-flex items-center justify-center text-white relative z-10">
                 <i class="fa fa-asterisk"></i>
               </div>
-              <div @click="() => $router.push('/lessons/three-js-basics')" class="flex-grow pl-4 cursor-pointer hover:underline">
+              <div @click="() => $router.push('/lessons/threejs-basics')" class="flex-grow pl-4 cursor-pointer hover:underline">
                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">THREE JS Bascis</h2>
                 <p class="leading-relaxed">We will be using THREE.JS to make some basic WebGL Rendering.</p>
               </div>
@@ -104,20 +104,20 @@
               <div class="h-full w-10 absolute inset-0 flex items-center justify-center">
                 <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
               </div>
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-500 inline-flex items-center justify-center text-white relative z-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-pink-500 inline-flex items-center justify-center text-white relative z-10">
                 <i class="fa fa-asterisk"></i>
               </div>
-              <div @click="() => $router.push('/lessons/three-js-intermediate')" class="flex-grow pl-4 cursor-pointer hover:underline">
+              <div @click="() => $router.push('/lessons/threejs-intermediate')" class="flex-grow pl-4 cursor-pointer hover:underline">
                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">THREE JS Intermediate</h2>
                 <p class="leading-relaxed">We will be using THREE.JS to make some basic Custom Shader WebGL.</p>
               </div>
             </div>
 
             <div class="flex relative pb-12">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-500 inline-flex items-center justify-center text-white relative z-10">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-pink-500 inline-flex items-center justify-center text-white relative z-10">
                 <i class="fa fa-asterisk"></i>
               </div>
-              <div @click="() => $router.push('/lessons/three-js-advanced')" class="flex-grow pl-4 cursor-pointer hover:underline">
+              <div @click="() => $router.push('/lessons/threejs-advanced')" class="flex-grow pl-4 cursor-pointer hover:underline">
                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">THREE JS Advanced</h2>
                 <p class="leading-relaxed">We will be using THREE.JS to make some custom GPGPU WebGL ART.</p>
               </div>
