@@ -100,11 +100,13 @@ export default {
       this.saveerID = setTimeout(() => {
         let vm = this
         this.makeLIVE = {
-          template: `<div class="h-full">
-            <iframe v-if="url" :src="url" style="width: 100vw; height: 100%;" frameborder="0"></iframe>
+          template: `<div class="h-full w-full">
+            <iframe v-if="url" :src="url" :width="ww" :height="hh" style="width: 100%; height: 100%;" frameborder="0"></iframe>
           </div>`,
           data () {
             return {
+              ww: 350,
+              hh: 350,
               url: false
             }
           },
@@ -112,14 +114,32 @@ export default {
             try {
               let jsEncoded = encodeURIComponent(vm.current.vueCode)
               let html = `
+
+                <style>
+                  body{
+                    margin: 0px;
+                  }
+                  .full, html, body{
+                    width: 100%;
+                    height: 100%;
+                  }
+                </style>
                 <div style="display: none;" id="jsencode">${jsEncoded}</div>
                 <script${'>'}
                   eval(decodeURIComponent(document.querySelector('#jsencode').innerText))
                 ${'<'}/script>
               `
+              let rect = this.$el.getBoundingClientRect()
+              this.ww = rect.width
+              this.hh = rect.height
+
+              window.addEventListener('resize', () => {
+                let rect = this.$el.getBoundingClientRect()
+                this.ww = rect.width
+                this.hh = rect.height
+              })
 
               let blobURL = URL.createObjectURL(new Blob([html], { type: 'text/html' }))
-              console.log(html)
               this.url = blobURL
             } catch (e) {
               console.error(e)

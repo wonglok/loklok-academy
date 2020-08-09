@@ -48,6 +48,7 @@ loadCourse('JavaScript Basics', '/lessons/js-basics', require.context('./compone
 loadCourse('JavaScript ES6', '/lessons/es6-basics', require.context('./components/WebGL/AppUIs/CourseForES6', true, /\.vue$/, 'lazy'), 'lazy')
 loadCourse('JavaScript DOM', '/lessons/dom-basics', require.context('./components/WebGL/AppUIs/CourseForDOM', true, /\.vue$/, 'lazy'), 'lazy')
 loadCourse('Canvas 2D Basics', '/lessons/canvas-2d-basics', require.context('./components/WebGL/AppUIs/CourseForCanvas2D', true, /\.vue$/, 'lazy'), 'lazy')
+loadCourse('WebGL Raw API Basics', '/lessons/webgl-basics', require.context('./components/WebGL/AppUIs/CourseForWebGLConcept', true, /\.vue$/, 'lazy'), 'lazy')
 
 export const getLessons = () => {
   let oneCourse = courses.find(c => c.meta.prefix === router.currentRoute.meta.prefix)
