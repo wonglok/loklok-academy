@@ -135,10 +135,22 @@ class StateMachine {
 class OrganisedCanvas {
   constructor () {
     this.canRender = true
-    this.gl = false
     this.clock = 0
     this.loops = []
-    this.init()
+
+    var canvas = window.document.createElement('canvas');
+    canvas.width = 350;
+    canvas.height = 350;
+    canvas.style.width = '100vmin';
+    canvas.style.height = '100vmin';
+
+    document.body.style.display = 'flex';
+    document.body.style.justifyContent = 'center';
+    document.body.appendChild(canvas);
+
+    // get the webgl context.
+    var gl = canvas.getContext('webgl');
+    this.gl = gl
 
     let vs = glsl`
       attribute vec3 a_position;
@@ -161,8 +173,9 @@ class OrganisedCanvas {
       }
     `
 
-    this.glProgram = new GLProgram({ gl: this.gl, vs, fs })
-    this.machine = new StateMachine({ gl: this.gl, program: this.glProgram.program })
+    this.shaderProgram = new GLProgram({ gl: this.gl, vs, fs })
+    this.machine = new StateMachine({ gl: this.gl, program: this.shaderProgram.program })
+
     this.machine.useProgram()
 
     this.attributes = []
@@ -170,7 +183,7 @@ class OrganisedCanvas {
     let numberOfLines = 200
 
     let a_position_array = new Array(3 * 2 * numberOfLines)
-    let a_position = new BufferAttribute({ gl: this.gl, program: this.glProgram.program, name: 'a_position', array: a_position_array, memberCount: 3 })
+    let a_position = new BufferAttribute({ gl: this.gl, program: this.shaderProgram.program, name: 'a_position', array: a_position_array, memberCount: 3 })
     this.attributes.push(a_position)
     this.loops.push({
       name: 'a_position',
@@ -207,7 +220,7 @@ class OrganisedCanvas {
     })
 
     let a_color_array = new Array(3 * 2 * numberOfLines)
-    let a_color = new BufferAttribute({ gl: this.gl, program: this.glProgram.program, name: 'a_color', array: a_color_array, memberCount: 3 })
+    let a_color = new BufferAttribute({ gl: this.gl, program: this.shaderProgram.program, name: 'a_color', array: a_color_array, memberCount: 3 })
     this.attributes.push(a_color)
     // 6 data items, 3(xyz) = start of line, 3(xyz) = end of line
     let length = a_color.typedArray.length / 6
@@ -247,17 +260,7 @@ class OrganisedCanvas {
   }
 
   init () {
-    var canvas = window.document.createElement('canvas');
-    canvas.width = 350;
-    canvas.height = 350;
-    canvas.style.width = '100vmin';
-    canvas.style.height = '100vmin';
 
-    document.body.appendChild(canvas);
-
-    // get the webgl context.
-    var gl = canvas.getContext('webgl');
-    this.gl = gl
   }
 }
 

@@ -113,20 +113,27 @@ export default {
           mounted () {
             try {
               let jsurl = URL.createObjectURL(new Blob([vm.current.vueCode], { type: 'text/javascript' }))
-              let html = `
-
-                <style>
-                  body{
-                    margin: 0px;
-                  }
-                  .full, html, body{
-                    width: 100%;
-                    height: 100%;
-                  }
-                </style>
-                <script src="${jsurl}" ${'>'}
-
-                ${'<'}/script>
+              let html = `<!DOCTYPE html>
+                <html>
+                  <head>
+                    <meta charset="utf-8">
+                    <title>DOM Editor</title>
+                    <meta name="description" content="by Lok lok Academy">
+                    <style>
+                      body{
+                        margin: 0px;
+                      }
+                      .full, html, body{
+                        width: 100%;
+                        height: 100%;
+                      }
+                    </style>
+                  </head>
+                  <body>
+                      <script src="${jsurl}" ${'>'}
+                      ${'<'}/script>
+                  </body>
+                </html>
               `
               let rect = this.$el.getBoundingClientRect()
               this.ww = rect.width
