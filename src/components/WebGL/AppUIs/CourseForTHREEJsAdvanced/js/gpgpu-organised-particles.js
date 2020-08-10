@@ -36,6 +36,7 @@ let allocateValues = (dataTexture) => {
 
 let fragmentShaderVel = glsl`
 uniform vec3 mousePos;
+uniform float time;
 
 float constrain(float val, float min, float max) {
   if (val < min) {
@@ -60,22 +61,53 @@ vec3 getDiff (in vec3 lastPos, in vec3 mousePos) {
   return diff;
 }
 
+/* NEW GLSL NOISE FBM */
+const mat2 m = mat2(0.80,  0.60, -0.60,  0.80);
+float noise(in vec2 p) {
+  return sin(p.x)*sin(p.y);
+}
+
+float fbm4( vec2 p ) {
+    float f = 0.0;
+    f += 0.5000 * noise( p ); p = m * p * 2.02;
+    f += 0.2500 * noise( p ); p = m * p * 2.03;
+    f += 0.1250 * noise( p ); p = m * p * 2.01;
+    f += 0.0625 * noise( p );
+    return f / 0.9375;
+}
+
+float fbm6( vec2 p ) {
+    float f = 0.0;
+    f += 0.500000*(0.5+0.5*noise( p )); p = m*p*2.02;
+    f += 0.250000*(0.5+0.5*noise( p )); p = m*p*2.03;
+    f += 0.125000*(0.5+0.5*noise( p )); p = m*p*2.01;
+    f += 0.062500*(0.5+0.5*noise( p )); p = m*p*2.04;
+    f += 0.031250*(0.5+0.5*noise( p )); p = m*p*2.01;
+    f += 0.015625*(0.5+0.5*noise( p ));
+    return f/0.96875;
+}
+
+float pattern (vec2 p, float time) {
+  float vout = fbm4( p + time + fbm6( p + fbm4( p + time )) );
+  return (vout);
+}
+/* NEW GLSL NOISE FBM */
+
 void main (void) {
   vec2 uv = gl_FragCoord.xy / resolution.xy;
   vec4 lastPos = texture2D(texturePosition, uv);
   vec4 lastVel = texture2D(textureVelocity, uv);
 
-  vec3 diff = getDiff(lastPos.xyz, vec3(mousePos.xyz) );
-  lastVel.xyz += diff;
+  vec3 diff = getDiff(lastPos.xyz, vec3(mousePos.xy, sin(time)));
+  lastVel.xyz += diff * (1.0 - fbm6(diff.xy + time)) * 4.0;
 
   gl_FragColor = lastVel;
 }
 `
 
 let fragmentShaderPos = glsl`
-
+uniform float time;
 #include <common>
-
 
 //  Classic Perlin 3D Noise
 //  by Stefan Gustavson
@@ -127,55 +159,68 @@ vec3 fromBall(float r, float az, float el) {
     r * cos(el) * sin(az),
     r * sin(el)
     );
-  }
-  void toBall(vec3 pos, out float az, out float el) {
-    az = atan2(pos.y, pos.x);
-    el = atan2(pos.z, sqrt(pos.x * pos.x + pos.y * pos.y));
-  }
-  // float az = 0.0;
-  // float el = 0.0;
-  // vec3 noiser = vec3(lastVel);
-  // toBall(noiser, az, el);
-  // lastVel.xyz = fromBall(1.0, az, el);
+}
 
-  void main (void) {
-    vec2 uv = gl_FragCoord.xy / resolution.xy;
-    vec4 lastPos = texture2D(texturePosition, uv);
-    vec4 lastVel = texture2D(textureVelocity, uv);
+void toBall(vec3 pos, out float az, out float el) {
+  az = atan2(pos.y, pos.x);
+  el = atan2(pos.z, sqrt(pos.x * pos.x + pos.y * pos.y));
+}
+// float az = 0.0;
+// float el = 0.0;
+// vec3 noiser = vec3(lastVel);
+// toBall(noiser, az, el);
+// lastVel.xyz = fromBall(1.0, az, el);
 
-    float noisiness = 9.0;
+/* NEW GLSL NOISE FBM */
+const mat2 m = mat2(0.80,  0.60, -0.60,  0.80);
+float noise(in vec2 p) {
+  return sin(p.x)*sin(p.y);
+}
 
-    float az = 0.0;
-    float el = 0.0;
+float fbm4( vec2 p ) {
+    float f = 0.0;
+    f += 0.5000 * noise( p ); p = m * p * 2.02;
+    f += 0.2500 * noise( p ); p = m * p * 2.03;
+    f += 0.1250 * noise( p ); p = m * p * 2.01;
+    f += 0.0625 * noise( p );
+    return f / 0.9375;
+}
 
-    vec3 noiser = vec3(lastPos) + cnoise(vec2(lastVel * noisiness)) * noisiness * 0.5;
-    toBall(noiser, az, el);
-    if (rand(lastVel.xy) > 0.0333333) {
-      lastPos.xyz = fromBall(50.0, az, el);
-    } else {
-      lastPos.xyz += fromBall(-5.5, az, el);
-    }
+float fbm6( vec2 p ) {
+    float f = 0.0;
+    f += 0.500000*(0.5+0.5*noise( p )); p = m*p*2.02;
+    f += 0.250000*(0.5+0.5*noise( p )); p = m*p*2.03;
+    f += 0.125000*(0.5+0.5*noise( p )); p = m*p*2.01;
+    f += 0.062500*(0.5+0.5*noise( p )); p = m*p*2.04;
+    f += 0.031250*(0.5+0.5*noise( p )); p = m*p*2.01;
+    f += 0.015625*(0.5+0.5*noise( p ));
+    return f/0.96875;
+}
 
-    lastPos.xyz += lastVel.xyz;
-    gl_FragColor = lastPos;
-  }
+float pattern (vec2 p, float time) {
+  float vout = fbm4( p + time + fbm6( p + fbm4( p + time )) );
+  return (vout);
+}
+/* NEW GLSL NOISE FBM */
+
+void main (void) {
+  vec2 uv = gl_FragCoord.xy / resolution.xy;
+  vec4 lastPos = texture2D(texturePosition, uv);
+  vec4 lastVel = texture2D(textureVelocity, uv);
+
+  float az = 0.0;
+  float el = 0.0;
+
+  vec3 noiser = vec3(lastPos) + lastVel.xyz + fbm4(lastPos.xy / 50.0) + fbm6(lastVel.xy);
+  toBall(noiser, az, el);
+
+  lastPos.xyz = fromBall(50.0, az, el);
+
+  lastPos.xyz += lastVel.xyz;
+  gl_FragColor = lastPos;
+}
 `
 
-let setMouse = ({ mX, mY, rect, velVar, posVar }) => {
-  var posMouse = velVar.material.uniforms.mousePos.value
-  var velMouse = posVar.material.uniforms.mousePos.value
-  if (rect && typeof mX !== 'undefined' && typeof mY !== 'undefined') {
-    velMouse.x = ((mX - rect.left) / rect.width) * 2 - 1
-    velMouse.y = -((mY - rect.top) / rect.height) * 2 + 1
-
-    posMouse.x = ((mX - rect.left) / rect.width) * 2 - 1
-    posMouse.y = -((mY - rect.top) / rect.height) * 2 + 1
-
-    velMouse.y *= rect.width / rect.height
-    posMouse.y *= rect.width / rect.height
-    // console.log(mouse)
-  }
-}
 
 let makeGPGPU = ({ onLoop }) => {
   // Initialization...
@@ -234,14 +279,16 @@ let makeGPGPU = ({ onLoop }) => {
     `,
     fragmentShader: glsl`
     uniform sampler2D myVelTexture;
+    uniform sampler2D myPosTexture;
     varying vec2 vUv;
     void main (void) {
       vec4 velColor = texture2D(myVelTexture, vUv);
+      vec4 posColor = texture2D(myPosTexture, vUv);
 
       vec4 outputColor = vec4(
-        velColor.x + 0.6,
-        (velColor.y * velColor.x) + 0.6,
-        velColor.y + 0.6,
+          velColor.x + 0.6,
+          (velColor.y * velColor.x) + 0.6,
+          velColor.y + 0.6,
         1.0
         );
 
@@ -260,6 +307,21 @@ let makeGPGPU = ({ onLoop }) => {
   // Do your rendering
   scene.add(drawItem);
 
+  let setMouse = ({ mX, mY, rect, velVar, posVar }) => {
+    var posMouse = velVar.material.uniforms.mousePos.value
+    var velMouse = posVar.material.uniforms.mousePos.value
+    if (rect && typeof mX !== 'undefined' && typeof mY !== 'undefined') {
+      velMouse.x = ((mX - rect.left) / rect.width) * 2 - 1
+      velMouse.y = -((mY - rect.top) / rect.height) * 2 + 1
+
+      posMouse.x = ((mX - rect.left) / rect.width) * 2 - 1
+      posMouse.y = -((mY - rect.top) / rect.height) * 2 + 1
+
+      velMouse.y *= rect.width / rect.height
+      posMouse.y *= rect.width / rect.height
+      // console.log(mouse)
+    }
+  }
 
   let rect = renderer.domElement.getBoundingClientRect()
   window.addEventListener('resize', () => {
@@ -272,8 +334,12 @@ let makeGPGPU = ({ onLoop }) => {
   })
 
   onLoop(() => {
-    gpuCompute.compute()
     let time = window.performance.now() * 0.001
+
+    velVar.material.uniforms.time.value = time
+    posVar.material.uniforms.time.value = time
+
+    gpuCompute.compute()
 
     myMaterial.uniforms.time.value = time
     myMaterial.uniforms.myPosTexture.value = gpuCompute.getCurrentRenderTarget( posVar ).texture;
@@ -301,7 +367,7 @@ bloomPass.threshold = settings.bloomThreshold;
 bloomPass.strength = settings.bloomStrength;
 bloomPass.radius = settings.bloomRadius;
 
-var composer = new EffectComposer( renderer );
+var composer = new EffectComposer(renderer);
 composer.addPass( renderScene );
 composer.addPass( bloomPass );
 
