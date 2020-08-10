@@ -97,6 +97,8 @@ camera.position.z = 100;
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.setPixelRatio(window.devicePixelRatio || 1.5)
+	camera.aspect = window.innerWidth / window.innerHeight
+	camera.updateProjectionMatrix()
 }, false)
 window.dispatchEvent(new Event('resize'))
 

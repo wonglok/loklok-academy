@@ -105,10 +105,6 @@ if ( error !== null ) {
 	console.error( error );
 }
 
-// In each frame...
-
-// Compute!
-gpuCompute.compute();
 let uniforms = {
 	time: { value: 0 },
 	myTexture: { value: null }
@@ -140,7 +136,6 @@ var myMaterial = new THREE.ShaderMaterial({
 var geometry = new THREE.PlaneBufferGeometry(100, 100, Dimension, Dimension);
 // Update texture uniforms in your visualization materials with the gpu renderer output
 
-
 var drawItem = new THREE.Points(geometry, myMaterial);
 
 // Do your rendering
@@ -150,7 +145,9 @@ camera.position.z = 100;
 
 window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight)
-  renderer.setPixelRatio(window.devicePixelRatio || 1.5)
+	renderer.setPixelRatio(window.devicePixelRatio || 1.5)
+	camera.aspect = window.innerWidth / window.innerHeight
+	camera.updateProjectionMatrix()
 }, false)
 window.dispatchEvent(new Event('resize'))
 
