@@ -78,6 +78,11 @@ let cfgs = [
     name: 'ThreeJS Intermediate',
     path: '/lessons/threejs-intermediate',
     rCTX: require.context('./components/WebGL/AppUIs/CourseForTHREEJsIntermediate', true, /\.vue$/, 'lazy')
+  },
+  {
+    name: 'ThreeJS Advanced',
+    path: '/lessons/threejs-advanced',
+    rCTX: require.context('./components/WebGL/AppUIs/CourseForTHREEJsAdvanced', true, /\.vue$/, 'lazy')
   }
 ]
 

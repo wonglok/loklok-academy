@@ -1,6 +1,6 @@
 <template>
   <div class="o3d-editor full flex flex-col lg:flex-row">
-    <div v-if="useEditor" class="half-height w-full lg:w-7/12 lg:h-full  item-left bg-gray-200 border-r border-green-500">
+    <div v-if="useEditor" class="half-height w-full lg:w-6/12 lg:h-full  item-left bg-gray-200 border-r border-green-500">
       <ACE
         :colorPrefix="'#'"
         @save="onSave()"
@@ -14,7 +14,7 @@
       >
       </ACE>
     </div>
-    <div :class="{ 'half-height w-full lg:w-5/12 lg:h-full ': useEditor, 'w-full h-full': !useEditor }" class="item-right bg-white relative">
+    <div :class="{ 'half-height w-full lg:w-6/12 lg:h-full ': useEditor, 'w-full h-full': !useEditor }" class="item-right bg-white relative">
       <div v-html="styleHTML"></div>
       <component ref="scene" v-if="makeLIVE && runCanvas" :is="makeLIVE"></component>
     </div>
@@ -30,7 +30,6 @@
 // import { PCamera } from '../../Core/PCamera'
 // import { RayPlay } from '../../Core/RayPlay'
 // import { OCamera } from '../../Core/OCamera'
-
 export default {
   props: {
     globals: {
@@ -123,6 +122,7 @@ export default {
                   <head>
                     <meta charset="utf-8">
                     <title>DOM Editor</title>
+                    <base href="${location.origin}"/>
                     <meta name="description" content="by Lok lok Academy">
                     <style>
                       body{
