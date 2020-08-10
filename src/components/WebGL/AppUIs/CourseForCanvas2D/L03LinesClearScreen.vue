@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: require('raw-loader!./detail/canvas2d-clear-screen.txt').default
+      code: require('!raw-loader!./detail/canvas2d-clear-screen.js').default
     }
   },
   mounted () {

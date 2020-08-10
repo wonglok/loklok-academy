@@ -24,7 +24,7 @@ function getTransform(time){
 
 let speed = 15
 let timer = 0
-var rAF = function(time){
+var rAF = function () {
   window.requestAnimationFrame(rAF);
   timer += 1 / 1000 * speed;
   pre.style.transform = getTransform(timer);

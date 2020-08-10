@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: require('raw-loader!./detail/style-dom.txt').default
+      code: require('!raw-loader!./detail/style-dom.js').default
     }
   },
   mounted () {

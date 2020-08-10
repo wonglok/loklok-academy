@@ -28,8 +28,8 @@ window.addEventListener('DOMContentLoaded', function(){
     precision highp float;
     varying vec3 v_color;
     void main() {
-     gl_FragColor = vec4(v_color, 0.9);
-   }
+      gl_FragColor = vec4(v_color, 0.9);
+    }
   `;
 
   var vertexShader = gl.createShader(gl.VERTEX_SHADER);
@@ -123,12 +123,8 @@ window.addEventListener('DOMContentLoaded', function(){
 
   //draw
   //offset 0, draw 3 vertex
-
-  var dt = 0;
-
-  var rAF = function(time){
+  var rAF = function(){
     window.requestAnimationFrame(rAF);
-    dt = ((time) / 1000) % 1000;
 
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
     gl.clearColor(1, 1, 1, 1.0);

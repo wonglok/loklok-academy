@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: require('raw-loader!./txt/webgl-lines3d-organised.txt').default
+      code: require('!raw-loader!./txt/webgl-lines3d-organised.js').default
     }
   },
   mounted () {

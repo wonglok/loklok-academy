@@ -19,7 +19,7 @@ export default {
     return {
       file: this.$options.__file,
       code: `const YELLOW_MAT_CAP = "${location.origin}${require('./img/matcap-bright-yellow.png')}";
-${require('raw-loader!./txt/threejs-box-matcap.txt').default}`
+${require('raw-loader!./txt/threejs-box-matcap.js').default}`
     }
   },
   mounted () {

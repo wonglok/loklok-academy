@@ -23,7 +23,7 @@ scene.add(lightTop)
 
 var geometry = new THREE.TorusKnotBufferGeometry(10, 2.5, 181, 20);
 geometry.scale(0.1, 0.1, 0.1);
-
+/* global YELLOW_MAT_CAP */
 let texture = new THREE.TextureLoader().load(YELLOW_MAT_CAP);
 var material = new THREE.MeshMatcapMaterial({ matcap: texture, color: 0xffffff });
 var cube = new THREE.Mesh( geometry, material );

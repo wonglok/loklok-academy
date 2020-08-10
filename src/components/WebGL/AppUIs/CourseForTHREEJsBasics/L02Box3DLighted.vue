@@ -18,7 +18,7 @@ export default {
   data () {
     return {
       file: this.$options.__file,
-      code: require('raw-loader!./txt/threejs-box-lighting.txt').default
+      code: require('!raw-loader!./txt/threejs-box-lighting.js').default
     }
   },
   mounted () {
