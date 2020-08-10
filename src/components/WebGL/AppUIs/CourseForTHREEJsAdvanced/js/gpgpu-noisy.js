@@ -38,7 +38,6 @@ let makeGeo = (pos0) => {
 }
 makeGeo(pos0)
 
-
 let glsl = v => v[0]
 let fragmentShaderVel = glsl`
 
