@@ -21,25 +21,31 @@ export default {
       code: `var students = [
     {
         name: 'Lok',
-        age: 26
+        age: 24
     },
     {
         name: 'Siu Ming',
-        age: 30
+        age: 26
     },
     {
         name: 'Dai Ming',
-        age: 50
+        age: 30
     },
     {
         name: 'Heather',
-        age: 24
+        age: 50
     },
 ];
 
 console.log('Students over 35:',
     students.filter(function(item){
         return item.age > 35;
+    })
+);
+
+console.log('Lok',
+    students.find(function(item){
+        return item.name === 'Lok';
     })
 );
 
@@ -51,17 +57,7 @@ console.log('Sum of age:',
 
 console.log('Map',
     students.map(function(item){
-        var age = item.age;
-
-        if (age >= 50){
-            return 'Elderly';
-        }else if (age >= 30){
-            return 'Adult';
-        }else if (age > 18){
-            return 'Young Adult';
-        }else {
-            return 'Teens and Kids';
-        }
+      return item.name
     })
 );
 `

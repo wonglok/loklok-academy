@@ -29,10 +29,8 @@ if (false){
 
 
 if (false){
-    // run
-    console.log('3');
+  console.log('3');
 } else {
-	//won't run
 	console.log('4');
 }
 
