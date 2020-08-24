@@ -81,8 +81,8 @@
                 <li>
                   <a
                     class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                    target="_blank" href="http://o3d-gen2.vercel.app/"
-                    >O3D-GEN2</a
+                    target="_blank" href="http://o3d-gen3.vercel.app/"
+                    >O3D-GEN3</a
                   >
                 </li>
                 <li>
