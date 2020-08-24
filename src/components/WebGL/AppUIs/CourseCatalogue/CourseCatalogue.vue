@@ -157,6 +157,7 @@ export default {
 .course-banner{
   height: 55vh;
 }
+
 .course-banner-overlay{
   background-color: rgba(0, 0, 0, 0.185);
 }
@@ -171,9 +172,11 @@ export default {
   background-repeat: no-repeat no-repeat;
   background-color: #142f79;
 }
+
 /* @screen lg{
   .course-catalogue-art{
     height: 100%;
   }
 } */
 </style>
+

@@ -119,11 +119,20 @@ export const routes = [
     name: 'Course Catalogue',
     component: () => import('./components/WebGL/AppUIs/CourseCatalogue/CourseCatalogue.vue')
   },
+
   {
     path: '*',
     component: () => import('./components/WebGL/AppUIs/Shared/E404.vue')
   }
 ]
+
+if (process.env.NODE_ENV === 'development') {
+  routes.push({
+    path: '/moves',
+    name: 'MovesViewer',
+    component: () => import('./components/WebGL/AppUIs/MovesGUI/MovesViewer.vue')
+  })
+}
 
 export const router = new VueRouter({
   mode: 'history',
